@@ -1,5 +1,5 @@
-all: sizemain.c sizefunc.c sizefunc.h
-	gcc -Wall -o size sizemain.c sizefunc.c
+all: stringmain.c stringfunc.c stringfunc.h
+	gcc -Wall -o string stringmain.c stringfunc.c
 	
 stepwise: sizemain.o sizefunc.o sizefunc.h
 	gcc -Wall -o size sizemain.o sizefunc.o sizefunc.h
