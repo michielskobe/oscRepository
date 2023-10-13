@@ -2,11 +2,6 @@
 #include "stringfunc.h"
 #include "string.h"
 
-void myStringFunc() {
-	
-	return;
-}
-
 void toUppercase(char * who, char * where) {
 	int i;
 	char upper[sizeof(who)];
