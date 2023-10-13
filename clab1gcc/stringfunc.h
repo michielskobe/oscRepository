@@ -2,4 +2,4 @@
 header file
 */
 void myStringFunc ();
-char * toUppercase (char * who);
+void toUppercase (char * who, char * where);
