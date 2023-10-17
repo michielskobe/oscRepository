@@ -2,14 +2,14 @@
 #include "stringfunc.h"
 #include "string.h"
 
-void toUppercase(char * who, char * where) {
+char * toUppercase(char * who) {
 	int i;
-	char upper[sizeof(who)];
+	static char upper[sizeof(who)];
+	strcpy(upper, who);
 	for (i = 0; i < sizeof(who); i++) {
-		if (who[i] != 0) {
-			upper[i] = who[i] - 32;
+		if (upper[i] != 0) {
+			upper[i] = upper[i] - 32;
 		}
 	}
-	strcpy(where, upper);	
-	return;
+	return upper;
 }

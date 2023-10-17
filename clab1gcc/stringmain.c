@@ -3,11 +3,11 @@
 #include "string.h"
 
 int main (int argc, char **argv) {
-	int MAX = 20;
+	const int MAX = 20;
 	char first[MAX];
 	char second[MAX];
 	char name[MAX];
-	char str[MAX];
+	char *str;
 
 	printf("Enter first name: ");
    	scanf("%s", first);
@@ -15,7 +15,8 @@ int main (int argc, char **argv) {
    	printf("Enter second name: ");
    	scanf("%s", second);
    	
-   	toUppercase(second, str);
+   	str = toUppercase(second);
+   	printf("second uppercase: %s\n", str);
    	printf("strcmp of second and str: %i\n", strcmp(second, str));
    	
    	strcat(strcat(name, first), second);
@@ -30,5 +31,6 @@ int main (int argc, char **argv) {
 	
 	sscanf( name, "%s %s %d", first, second, &year);
 	printf("first: %s; second: %s; year: %d\n", first, second, year);
+	
 	return 0;
 }
