@@ -1,12 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void swap_pointer(void*, void*);
-
-void swap_pointer(void*, void*) {
-    return;
-}
-
+#define FREQ 1;
+#define MIN_TEMP = -10;
+#define MAX_TEMP = 35;
 
 int main( void ) {
 
