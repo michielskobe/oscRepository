@@ -21,7 +21,7 @@ CString *Init_CString(char *str) {
 
 void Delete_CString(CString *p) {
     free(p);
-    free(p->str);
+    //free(p->str);
 }
 
 // Removes the last character of a CString and returns it.
