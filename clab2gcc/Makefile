@@ -1,14 +1,26 @@
-all: lab2main.c lab2func.c lab2func.h
-	gcc -g -Wall -o lab2 stringmain.c lab2func.c
-	
-stepwise: lab2main.o lab2func.o lab2func.h
-	gcc -Wall -o size lab2main.o lab2func.o lab2func.h
+# Makefile for debug_challenge
+# author: TD
 
-lab2main.o: lab2main.c
-	gcc -Wall -c lab2main.c
-	
-lab2func.o: lab2func.c lab2func.h
-	gcc -Wall -c sizefunc.c lab2func.h
-	
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -Wextra -Werror -g
+
 clean:
-	rm -rf *.o
+	rm -f debugchallenge.o
+
+debugchallenge: cstring.c
+	$(CC) $(CFLAGS) -o debugchallenge.o cstring.c
+	#./debugchallenge.o
+
+memtest: debugchallenge
+	valgrind --leak-check=yes ./debugchallenge.o
+	#./debugchallenge.o
+
+all: debugchallenge
+	#./debugchallenge.o
+
+memtest: all	valgrind --leak-check=yes ./cstring
+
+# launch with CLION target executable configured or uncomment line
