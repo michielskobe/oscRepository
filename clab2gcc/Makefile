@@ -21,6 +21,5 @@ memtest: debugchallenge
 all: debugchallenge
 	#./debugchallenge.o
 
-memtest: all	valgrind --leak-check=yes ./cstring
 
-# launch with CLION target executable configured or uncomment line
+# launch with CLION target executable configured or uncomment lin

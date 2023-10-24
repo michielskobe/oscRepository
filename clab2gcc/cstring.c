@@ -12,16 +12,17 @@ typedef struct {
 } CString;
 
 CString *Init_CString(char *str) {
-    CString *p = malloc(sizeof(CString));
+    CString *p = (CString*)malloc(sizeof(CString));
     p->len = strlen(str);
-    strncpy(p, &str, strlen(str) + 1);
-
+    char *ptr = malloc(sizeof(str));
+    strncpy(ptr, str, strlen(str)+1);
+    p->str = ptr;
     return p;
 }
 
 void Delete_CString(CString *p) {
+    free(p->str);
     free(p);
-    //free(p->str);
 }
 
 // Removes the last character of a CString and returns it.
@@ -37,13 +38,14 @@ char Chomp(CString *cstring) {
 
 // Appends a char * to a CString //
 CString *Append_Chars_To_CString(CString *p, char *str) {
-    char *newstr = malloc(p->len );
+    char *newstr = malloc(p->len + strlen(str));
+    int newlen = p->len + strlen(str) + 1;
     p->len = p->len + strlen(str);
 
     // Create the new string to replace p->str
-    snprintf(newstr, p->len, "%s%s", p->str, str);
+    snprintf(newstr, newlen, "%s%s", p->str, str);
     // Free old string and make CString point to the new string
-    //free(p);
+    free(p->str);
     p->str = newstr;
 
     return p;
