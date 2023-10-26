@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d5210e3-1e3c-45f5-8180-d3ede0349773" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/osc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/clab3gcc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex1/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex1/dplist.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex1/dplist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex1/program.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex2/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ex2/dplist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/dplist.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/dplist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/dplist_test.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/ourtest.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/milestone1/randomtest.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2XINAF06Z1M6apFpSrvTUWarpLb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/kobe/osc/clab3gcc/ex1/Makefile",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d5210e3-1e3c-45f5-8180-d3ede0349773" name="Changes" comment="" />
+      <created>1698312491328</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698312491328</updated>
+      <workItem from="1698312496141" duration="112000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
