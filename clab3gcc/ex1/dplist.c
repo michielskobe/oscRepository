@@ -33,7 +33,7 @@ dplist_t *dpl_create() {
 void dpl_free(dplist_t **list) {
 
     //TODO: add your code here
-    //Do extensive testing with valgrind. 
+    //Do extensive testing with valgrind.
 
 }
 
@@ -87,13 +87,37 @@ dplist_t *dpl_insert_at_index(dplist_t *list, element_t element, int index) {
 }
 
 dplist_t *dpl_remove_at_index(dplist_t *list, int index) {
-
     //TODO: add your code here
-    return NULL;
+    if (list == NULL) {
+        return NULL;
+    }
+    // pointer drawing breakpoint
+    dplist_node_t *node_to_remove = dpl_get_reference_at_index(list, index);
+    if (list->head == NULL) { // covers case 1
+        // pointer drawing breakpoint
+    } else if (index <= 0) { // covers case 2
+        dplist_node_t *new_next = node_to_remove->next;
+        list->head = new_next;
+        node_to_remove->next->prev = NULL;
+        // pointer drawing breakpoint
+    } else {
+        // pointer drawing breakpoint
+        if (index < dpl_size(list) - 1) { // covers case 4
+            dplist_node_t *new_next = node_to_remove->next;
+            dplist_node_t *new_prev = node_to_remove->prev;
+            node_to_remove->next->prev = new_prev;
+            node_to_remove->prev->next = new_next;
+            // pointer drawing breakpoint
+        } else { // covers case 3
+            node_to_remove->prev->next = NULL;
+            // pointer drawing breakpoint
+        }
+    }
+    free(node_to_remove);
+    return list;
 }
 
 int dpl_size(dplist_t *list) {
-
     //TODO: add your code here
     if (list == NULL) {
         return -1;
@@ -113,7 +137,6 @@ int dpl_size(dplist_t *list) {
 dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     int count = 0 ;
     dplist_node_t *dummy = NULL;
-
     //TODO: add your code here
     if (list == NULL) {
         dummy = NULL;
@@ -124,7 +147,7 @@ dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     else if (index <= 0) {
         dummy = list->head;
     }
-    else if (index > dpl_size(list)) {
+    else if (index >= dpl_size(list)) {
         dplist_node_t* current_node = list->head;
         while (current_node->next != NULL) {
             current_node = current_node->next;
@@ -133,7 +156,7 @@ dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     }
     else {
         dplist_node_t* current_node = list->head;
-        while (count <= index) {
+        while (count < index) {
             current_node = current_node->next;
             count++;
         }

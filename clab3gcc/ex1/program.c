@@ -28,6 +28,8 @@ int main(void)
     dpl_insert_at_index(numbers, 'b', 100);
     ck_assert_msg(dpl_size(numbers) == 3, "Numbers must contain 3 elements.");
 
+    dpl_remove_at_index(numbers, -400);
+
     dpl_free(&numbers);
 
     return 0;
