@@ -1,5 +1,5 @@
 /**
- * \author Jeroen Van Aken, Bert Lagaisse, Ludo Bruynseels
+ * \author Jeroen Van Aken, Bert Lagaisse, Ludo Bruynseels  and Kobe Michiels
  */
 
 #include <stdlib.h>
@@ -29,11 +29,19 @@ dplist_t *dpl_create() {
     list->head = NULL;
   return list;
 }
-
+/** Deletes all elements in the list
+ * - Every list node of the list must be deleted. (free memory)
+ * - The list itself also needs to be deleted. (free all memory)
+ * - '*list' must be set to NULL.
+ * \param list a double pointer to the list
+ */
 void dpl_free(dplist_t **list) {
 
     //TODO: add your code here
     //Do extensive testing with valgrind.
+    *list = NULL;
+    free(*list);
+
 
 }
 
@@ -87,7 +95,6 @@ dplist_t *dpl_insert_at_index(dplist_t *list, element_t element, int index) {
 }
 
 dplist_t *dpl_remove_at_index(dplist_t *list, int index) {
-    //TODO: add your code here
     if (list == NULL) {
         return NULL;
     }
@@ -118,7 +125,6 @@ dplist_t *dpl_remove_at_index(dplist_t *list, int index) {
 }
 
 int dpl_size(dplist_t *list) {
-    //TODO: add your code here
     if (list == NULL) {
         return -1;
     }
@@ -137,11 +143,7 @@ int dpl_size(dplist_t *list) {
 dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     int count = 0 ;
     dplist_node_t *dummy = NULL;
-    //TODO: add your code here
-    if (list == NULL) {
-        dummy = NULL;
-    }
-    else if (list->head == NULL) {
+    if (list == NULL || list->head == NULL) {
         dummy = NULL;
     }
     else if (index <= 0) {
@@ -164,43 +166,35 @@ dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     }
     return dummy;
 }
-/** Returns the list element contained in the list node with index 'index' in the list.
- * - return is not returning a copy of the element with index 'index', i.e. 'element_copy()' is not used.
- * - If 'index' is 0 or negative, the element of the first list node is returned.
- * - If 'index' is bigger than the number of elements in the list, the element of the last list node is returned.
- * - If the list is empty, 0 is returned.
- * - If 'list' is NULL, 0 is returned.
- * \param list a pointer to the list
- * \param index the position of the node for which the element is returned
- * \return the element at the given index
- */
-element_t dpl_get_element_at_index(dplist_t *list, int index) {
 
-    //TODO: add your code here
-    element_t *element_at_index;
-    if (list == NULL){
-        element_at_index = NULL;
-    }
-    else if (index <= 0) {
-        element_at_index = list->head->element;
-    }
-    else if (index >= dpl_size(list)) {
-        dplist_node_t* current_node = list->head;
-        while (current_node->next != NULL) {
-            current_node = current_node->next;
-        }
-        element_at_index = current_node->element;
+element_t dpl_get_element_at_index(dplist_t *list, int index) {
+    element_t element_at_index;
+    if (list == NULL || list->head == NULL){
+        element_at_index = 0;
     }
     else {
-        element_at_index = NULL;
+        element_at_index = dpl_get_reference_at_index(list, index)->element;
     }
     return element_at_index;
 }
 
 int dpl_get_index_of_element(dplist_t *list, element_t element) {
-
-    //TODO: add your code here
-    return -1;
+    int index = -1;
+    if (list == NULL) {
+        return index;
+    }
+    else {
+        int count = 0;
+        dplist_node_t* current_node = list->head;
+        while (current_node != NULL) {
+            if (current_node->element == element) {
+                index = count;
+            }
+            current_node = current_node->next;
+            count++;
+        }
+        return index;
+    }
 }
 
 
