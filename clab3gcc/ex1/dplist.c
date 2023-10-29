@@ -164,11 +164,37 @@ dplist_node_t *dpl_get_reference_at_index(dplist_t *list, int index) {
     }
     return dummy;
 }
-
+/** Returns the list element contained in the list node with index 'index' in the list.
+ * - return is not returning a copy of the element with index 'index', i.e. 'element_copy()' is not used.
+ * - If 'index' is 0 or negative, the element of the first list node is returned.
+ * - If 'index' is bigger than the number of elements in the list, the element of the last list node is returned.
+ * - If the list is empty, 0 is returned.
+ * - If 'list' is NULL, 0 is returned.
+ * \param list a pointer to the list
+ * \param index the position of the node for which the element is returned
+ * \return the element at the given index
+ */
 element_t dpl_get_element_at_index(dplist_t *list, int index) {
 
     //TODO: add your code here
-    return '\e';
+    element_t *element_at_index;
+    if (list == NULL){
+        element_at_index = NULL;
+    }
+    else if (index <= 0) {
+        element_at_index = list->head->element;
+    }
+    else if (index >= dpl_size(list)) {
+        dplist_node_t* current_node = list->head;
+        while (current_node->next != NULL) {
+            current_node = current_node->next;
+        }
+        element_at_index = current_node->element;
+    }
+    else {
+        element_at_index = NULL;
+    }
+    return element_at_index;
 }
 
 int dpl_get_index_of_element(dplist_t *list, element_t element) {
