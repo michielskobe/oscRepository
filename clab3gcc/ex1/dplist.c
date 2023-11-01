@@ -29,20 +29,17 @@ dplist_t *dpl_create() {
     list->head = NULL;
   return list;
 }
-/** Deletes all elements in the list
- * - Every list node of the list must be deleted. (free memory)
- * - The list itself also needs to be deleted. (free all memory)
- * - '*list' must be set to NULL.
- * \param list a double pointer to the list
- */
+
 void dpl_free(dplist_t **list) {
-
-    //TODO: add your code here
     //Do extensive testing with valgrind.
-    *list = NULL;
+    dplist_node_t *current_node;
+    while(((*list)->head)) {
+        current_node = (*list)->head;
+        (*list)->head = (*list)->head->next;
+        free(current_node);
+    }
     free(*list);
-
-
+    *list = NULL;
 }
 
 /* Important note: to implement any list manipulation operator (insert, append, delete, sort, ...), always be aware of the following cases:
