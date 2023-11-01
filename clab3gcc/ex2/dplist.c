@@ -54,10 +54,10 @@ void dpl_free(dplist_t **list) {
 dplist_t *dpl_insert_at_index(dplist_t *list, element_t element, int index) {
     dplist_node_t *ref_at_index, *list_node;
     if (list == NULL) return NULL;
-
+    element_t e = malloc(sizeof(element_t));
     list_node = malloc(sizeof(dplist_node_t));
-
-    list_node->element = element;
+    e = element;
+    list_node->element = e;
     // pointer drawing breakpoint
     if (list->head == NULL) { // covers case 1
         list_node->prev = NULL;
