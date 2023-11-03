@@ -207,6 +207,7 @@ void *dpl_get_element_at_index(dplist_t *list, int index) {
     void *element_at_index;
     if (list == NULL || list->head == NULL){
         element_at_index = 0;
+        
     }
     else {
         element_at_index = dpl_get_reference_at_index(list, index)->element;
