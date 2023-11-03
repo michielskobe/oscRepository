@@ -102,6 +102,7 @@ void yourtest1()
 
         dpl_remove_at_index(list, 2, false);
         ck_assert_msg(dpl_size(list) == 2, "Numbers must contain 2 elements.");
+        
 
         dpl_free(&list, false);
 
