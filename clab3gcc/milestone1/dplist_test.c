@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
 
 typedef struct {
     int id;
@@ -64,6 +65,49 @@ void yourtest1()
         ck_assert_msg(list == NULL, "Failure: expected result to be NULL");
 
         // TODO : your test scenarios
+
+        list = dpl_create(element_copy, element_free, element_compare);
+        my_element_t *content1 = (my_element_t *)malloc(sizeof(my_element_t));
+        content1->id = 5;
+        content1->name = "foo";
+        dpl_insert_at_index(list, content1, 0, true);
+        ck_assert_msg(dpl_size(list) == 1, "Numbers must contain 1 element.");
+
+        my_element_t *content2 = (my_element_t *)malloc(sizeof(my_element_t));
+        content2->id = 3;
+        content2->name = "boo";
+        dpl_insert_at_index(list, content2, -1, true);
+        ck_assert_msg(dpl_size(list) == 2, "Numbers must contain 2 elements.");
+
+        my_element_t *content3 = (my_element_t *)malloc(sizeof(my_element_t));
+        content3->id = 2;
+        content3->name = "hoo";
+        dpl_insert_at_index(list, content3, 99, true);
+        ck_assert_msg(dpl_size(list) == 3, "Numbers must contain 3 elements.");
+
+        dpl_remove_at_index(list, 2, true);
+        ck_assert_msg(dpl_size(list) == 2, "Numbers must contain 2 elements.");
+
+        dpl_free(&list, true);
+
+        list = dpl_create(element_copy, element_free, element_compare);
+        dpl_insert_at_index(list, content1, 0, false);
+        ck_assert_msg(dpl_size(list) == 1, "Numbers must contain 1 element.");
+
+        dpl_insert_at_index(list, content2, -1, false);
+        ck_assert_msg(dpl_size(list) == 2, "Numbers must contain 2 elements.");
+
+        dpl_insert_at_index(list, content3, 99, false);
+        ck_assert_msg(dpl_size(list) == 3, "Numbers must contain 3 elements.");
+
+        dpl_remove_at_index(list, 2, false);
+        ck_assert_msg(dpl_size(list) == 2, "Numbers must contain 2 elements.");
+
+        dpl_free(&list, false);
+
+        free(content1);
+        free(content2);
+        free(content3);
 
         }
 
