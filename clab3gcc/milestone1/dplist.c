@@ -98,32 +98,28 @@ dplist_t *dpl_insert_at_index(dplist_t *list, void *element, int index, bool ins
 }
 
 dplist_t *dpl_remove_at_index(dplist_t *list, int index, bool free_element) {
-    if (list == NULL) {
-        return NULL;
-    }
-    dplist_node_t *node_to_remove = dpl_get_reference_at_index(list, index);
-    if (list->head == NULL) { // covers case 1
-    } else if (index <= 0) { // covers case 2
-        dplist_node_t *new_next = node_to_remove->next;
-        list->head = new_next;
-        node_to_remove->next->prev = NULL;
+    if (list == NULL || list->head == NULL) {
     } else {
-        if (index < dpl_size(list) - 1) { // covers case 4
+        dplist_node_t *node_to_remove = dpl_get_reference_at_index(list, index);
+        if (index <= 0) {
             dplist_node_t *new_next = node_to_remove->next;
-            dplist_node_t *new_prev = node_to_remove->prev;
-            node_to_remove->next->prev = new_prev;
-            node_to_remove->prev->next = new_next;
-        } else { // covers case 3
-            node_to_remove->prev->next = NULL;
+            list->head = new_next;
+            node_to_remove->next->prev = NULL;
+        } else {
+            if (index < dpl_size(list) - 1) {
+                dplist_node_t *new_next = node_to_remove->next;
+                dplist_node_t *new_prev = node_to_remove->prev;
+                node_to_remove->next->prev = new_prev;
+                node_to_remove->prev->next = new_next;
+            } else {
+                node_to_remove->prev->next = NULL;
+            }
+        } if (free_element)
+        {
+            list->element_free(&node_to_remove->element);
         }
-    }
-    if (free_element)
-    {
-        list->element_free(&node_to_remove->element);
-    }
-    free(node_to_remove);
-    return list;
-
+        free(node_to_remove);
+    } return list;
 }
 
 int dpl_size(dplist_t *list) {
