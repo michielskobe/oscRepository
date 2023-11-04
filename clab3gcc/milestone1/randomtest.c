@@ -6,7 +6,7 @@
 #include "dplist.h"
 #include "time.h"
 
-dplist_t * list = NULL;
+
 
 int dplist_errno;
 
@@ -22,6 +22,7 @@ typedef struct {
 } my_element_t;
 
 int main(void) {
+    dplist_t * list = NULL;
     my_element_t x;
     char* name;
     asprintf(&name,"Jeroen");

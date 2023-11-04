@@ -104,7 +104,7 @@ dplist_t *dpl_remove_at_index(dplist_t *list, int index, bool free_element) {
         if (index <= 0) {
             dplist_node_t *new_next = node_to_remove->next;
             list->head = new_next;
-            node_to_remove->next->prev = NULL;
+            new_next->prev = NULL;
         } else {
             if (index < dpl_size(list) - 1) {
                 dplist_node_t *new_next = node_to_remove->next;
