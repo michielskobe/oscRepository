@@ -99,6 +99,14 @@ dplist_t *dpl_insert_at_index(dplist_t *list, void *element, int index, bool ins
 
 dplist_t *dpl_remove_at_index(dplist_t *list, int index, bool free_element) {
     if (list == NULL || list->head == NULL) {
+    } else if (list->head->next == NULL) {
+        dplist_node_t *node_to_remove = dpl_get_reference_at_index(list, index);
+        list->head = NULL;
+        if (free_element)
+        {
+            list->element_free(&node_to_remove->element);
+        }
+        free(node_to_remove);
     } else {
         dplist_node_t *node_to_remove = dpl_get_reference_at_index(list, index);
         if (index <= 0) {

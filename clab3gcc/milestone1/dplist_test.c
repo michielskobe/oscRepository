@@ -62,7 +62,6 @@ void yourtest1()
         dpl_free(&list, true);
         ck_assert_msg(list == NULL, "Failure: expected result to be NULL");
 
-        // TODO : your test scenarios
         // Create variables to use in tests
         my_element_t *content1 = (my_element_t *)malloc(sizeof(my_element_t));
         content1->id = 5;
@@ -106,6 +105,20 @@ void yourtest1()
         ck_assert_msg(dpl_get_element_at_index(list, 1) == NULL, "Failure: expected result to be NULL.");
         ck_assert_msg(dpl_get_index_of_element(list, content1) == -1, "Failure: expected result to be -1.");
         ck_assert_msg(dpl_get_element_at_reference(list, 0) == NULL, "Failure: expected result to be NULL.");
+
+        // Test dpl_insert_at_index() and dpl_remove_at_index(), don't use callback with only one element (special list->head->next = NULL edge-case)
+        dpl_insert_at_index(list, content1, 0, false);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, 1, false);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
+        dpl_insert_at_index(list, content1, 0, false);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, -1, false);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
+        dpl_insert_at_index(list, content1, 0, false);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, 10, false);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
 
         // Test dpl_insert_at_index(), don't use callback
         dpl_insert_at_index(list, content1, 0, false);
@@ -166,6 +179,20 @@ void yourtest1()
         dpl_free(&list, false);
 
         list = dpl_create(element_copy, element_free, element_compare);
+
+        // Test dpl_insert_at_index() and dpl_remove_at_index(), use callback with only one element (special list->head->next = NULL edge-case)
+        dpl_insert_at_index(list, content1, 0, true);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, 1, true);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
+        dpl_insert_at_index(list, content1, 0, true);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, -1, true);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
+        dpl_insert_at_index(list, content1, 0, true);
+        ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
+        dpl_remove_at_index(list, 10, true);
+        ck_assert_msg(dpl_size(list) == 0, "Failure: Numbers must contain 0 element.");
 
         // Test dpl_insert_at_index(), use callback
         dpl_insert_at_index(list, content1, 0, true);
