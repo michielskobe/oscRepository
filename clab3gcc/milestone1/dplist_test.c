@@ -106,7 +106,7 @@ void yourtest1()
         ck_assert_msg(dpl_get_index_of_element(list, content1) == -1, "Failure: expected result to be -1.");
         ck_assert_msg(dpl_get_element_at_reference(list, 0) == NULL, "Failure: expected result to be NULL.");
 
-        // Test dpl_insert_at_index() and dpl_remove_at_index(), don't use callback with only one element (special list->head->next = NULL edge-case)
+        // Test dpl_remove_at_index() with only one element (special list->head->next = NULL edge-case), don't use callback
         dpl_insert_at_index(list, content1, 0, false);
         ck_assert_msg(dpl_size(list) == 1, "Failure: Numbers must contain 1 element.");
         dpl_remove_at_index(list, 1, false);
