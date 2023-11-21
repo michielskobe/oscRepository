@@ -24,7 +24,6 @@ int main()
     v = 0.002;
     ts = time(NULL);
     insert_sensor(f, id, v, ts);
-    sleep(30);
     id = 3;
     v = 0.003;
     ts = time(NULL);
