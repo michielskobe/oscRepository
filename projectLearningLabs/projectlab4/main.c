@@ -13,15 +13,12 @@ void *buffer_write_handler(void *arg);
 void *buffer_read_handler(void *arg);
 
 sbuffer_t *buffer;
-pthread_mutex_t mutex;
 
 int main() {
 
     sbuffer_init(&buffer);
 
     pthread_t writer_thread, reader_thread1, reader_thread2;
-
-    pthread_mutex_init(&mutex, NULL);
 
     pthread_create(&writer_thread, NULL, buffer_write_handler, NULL);
     pthread_create(&reader_thread1, NULL, buffer_read_handler, NULL);
@@ -32,7 +29,7 @@ int main() {
     pthread_join(reader_thread2, NULL);
 
     sbuffer_free(&buffer);
-    pthread_mutex_destroy(&mutex);
+
     return 0;
 }
 
@@ -57,15 +54,14 @@ void *buffer_write_handler(void *arg) {
     sbuffer_insert(buffer, data);
     usleep(10000); //wait 10ms after inserting a measurement
     fclose(fp_sensor_data);
+    free(data);
     pthread_exit(0);
 }
 
 void *buffer_read_handler(void *arg) {
     sensor_data_t *data = malloc(sizeof(sensor_data_t*));
     while (1) {
-        pthread_mutex_lock(&mutex);
         sbuffer_remove(buffer, data);
-        pthread_mutex_unlock(&mutex);
         if (data->id == 0){
             break;
         }
@@ -73,7 +69,6 @@ void *buffer_read_handler(void *arg) {
         fprintf(fp_sensor_data_csv, "%d,%f,%ld\n", data->id, data->value, data->ts);
         fclose(fp_sensor_data_csv);
         usleep(25000); //wait 25ms after writing a measurement
-
     }
     free(data);
     pthread_exit(0);

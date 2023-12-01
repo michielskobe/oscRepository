@@ -2,6 +2,8 @@
  * \author Kobe Michiels
  */
 
+// CVS DIRECT WEGSCHRIJVEN!!!!!
+
 #include "sensor_db.h"
 #include <stdio.h>
 #include <stdbool.h>
