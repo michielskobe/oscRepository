@@ -68,7 +68,7 @@ void *buffer_read_handler(void *arg) {
         FILE *fp_sensor_data_csv = fopen("sensor_data_out.csv", "a");
         fprintf(fp_sensor_data_csv, "%d,%f,%ld\n", data->id, data->value, data->ts);
         fclose(fp_sensor_data_csv);
-        usleep(25000); //wait 25ms after writing a measurement
+        usleep(25); //wait 25ms after writing a measurement
     }
     free(data);
     pthread_exit(0);

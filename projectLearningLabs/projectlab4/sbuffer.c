@@ -103,6 +103,11 @@ int sbuffer_insert(sbuffer_t *buffer, sensor_data_t *data) {
         buffer->tail->next = dummy;
         buffer->tail = buffer->tail->next;
     }
+    if (data->id == 0){
+        pthread_cond_broadcast(&cond);
+        pthread_mutex_unlock(&mutex);
+        return SBUFFER_SUCCESS;
+    }
     pthread_cond_signal(&cond);
     pthread_mutex_unlock(&mutex);
     return SBUFFER_SUCCESS;
