@@ -48,8 +48,11 @@ int sbuffer_free(sbuffer_t **buffer) {
 int sbuffer_remove(sbuffer_t *buffer, sensor_data_t *data) {
     sbuffer_node_t *dummy;
     if (buffer == NULL) return SBUFFER_FAILURE;
-    if (buffer->head == NULL) return SBUFFER_NO_DATA;
+    while (buffer->head == NULL);
     *data = buffer->head->data;
+    if (data->id == 0){
+        return SBUFFER_SUCCESS;
+    }
     dummy = buffer->head;
     if (buffer->head == buffer->tail) // buffer has only one node
     {
