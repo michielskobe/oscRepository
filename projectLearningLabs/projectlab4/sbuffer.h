@@ -40,7 +40,7 @@ int sbuffer_remove(sbuffer_t *buffer, sensor_data_t *data);
  * Inserts the sensor data in 'data' at the end of 'buffer' (at the 'tail')
  * \param buffer a pointer to the buffer that is used
  * \param data a pointer to sensor_data_t data, that will be copied into the buffer
- * \return SBUFFER_SUCCESS on success and SBUFFER_FAILURE if an error occured
+ * \return SBUFFER_SUCCESS on success and SBUFFER_FAILURE if an error occurred
 */
 int sbuffer_insert(sbuffer_t *buffer, sensor_data_t *data);
 
