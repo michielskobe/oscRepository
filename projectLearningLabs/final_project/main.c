@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     create_log_process();
 
     pthread_t connmgr_thread;
-    pthread_t datamgr_thread;
+    //pthread_t datamgr_thread;
     //pthread_t stormgr_thread;
 
     conn_param_t *connmgr_param = malloc(sizeof(conn_param_t));
@@ -88,15 +88,15 @@ int main(int argc, char *argv[]) {
     connmgr_param->max_conn = atoi(argv[2]);
     connmgr_param->buffer = sbuffer;
 
-    data_param_t *datamgr_param = malloc(sizeof(data_param_t));
-    datamgr_param->buffer = sbuffer;
+    //data_param_t *datamgr_param = malloc(sizeof(data_param_t));
+    //datamgr_param->buffer = sbuffer;
 
     pthread_create(&connmgr_thread, NULL, connection_manager, connmgr_param);
-    pthread_create(&datamgr_thread, NULL, datamgr_parse_sensor_files, datamgr_param);
+    //pthread_create(&datamgr_thread, NULL, datamgr_parse_sensor_files, datamgr_param);
     //pthread_create(&stormgr_thread, NULL, NULL, NULL);
 
     pthread_join(connmgr_thread, NULL);
-    pthread_join(datamgr_thread, NULL);
+    //pthread_join(datamgr_thread, NULL);
     //pthread_join(stormgr_thread, NULL);
 }
 

@@ -25,7 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/sensor_gateway" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +106,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Native Application.clean-all">
+  <component name="RunManager" selected="Native Application.all">
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/sensor_gateway">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -190,7 +193,8 @@
       <workItem from="1702076248443" duration="302000" />
       <workItem from="1702077355430" duration="406000" />
       <workItem from="1702078448972" duration="274000" />
-      <workItem from="1702079167348" duration="2576000" />
+      <workItem from="1702079167348" duration="3624000" />
+      <workItem from="1702157166804" duration="331000" />
     </task>
     <servers />
   </component>
