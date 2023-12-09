@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    create_log_process();
+    int child_write_end = create_log_process();
 
     pthread_t connmgr_thread;
     //pthread_t datamgr_thread;
@@ -87,6 +87,7 @@ int main(int argc, char *argv[]) {
     connmgr_param->port = atoi(argv[1]);
     connmgr_param->max_conn = atoi(argv[2]);
     connmgr_param->buffer = sbuffer;
+    connmgr_param->write_end = child_write_end;
 
     //data_param_t *datamgr_param = malloc(sizeof(data_param_t));
     //datamgr_param->buffer = sbuffer;
@@ -98,5 +99,9 @@ int main(int argc, char *argv[]) {
     pthread_join(connmgr_thread, NULL);
     //pthread_join(datamgr_thread, NULL);
     //pthread_join(stormgr_thread, NULL);
+
+    char write_msg[SIZE];
+    sprintf(write_msg, "%s", "Terminate process");
+    write(fd[WRITE_END], write_msg, SIZE);
 }
 

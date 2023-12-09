@@ -26,7 +26,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connmgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connmgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datamgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -86,26 +87,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Native Application.all.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.file_creator.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kobe/osc/projectLearningLabs/final_project/Makefile&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Makefile Target.sensor_gateway_debug.executor": "Run",
+    "Native Application.all.executor": "Debug",
+    "Native Application.file_creator.executor": "Run",
+    "Native Application.sensor_gateway_debug.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/kobe/osc/projectLearningLabs/final_project/Makefile",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Native Application.all">
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/sensor_gateway">
       <method v="2">
@@ -142,7 +145,7 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="sensor_gateway_debug" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="sensor_gateway_debug" CONFIG_NAME="sensor_gateway_debug" version="1">
+    <configuration name="sensor_gateway_debug" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="5678 3" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="sensor_gateway_debug" CONFIG_NAME="sensor_gateway_debug" version="1" RUN_PATH="$PROJECT_DIR$/sensor_gateway">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
@@ -162,7 +165,14 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="sensor_gateway_debug" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="sensor_gateway_debug" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Makefile Target.sensor_gateway_debug" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.clean-all" />
       <item itemvalue="Native Application.file_creator" />
@@ -175,6 +185,11 @@
       <item itemvalue="Native Application.sensor_node" />
       <item itemvalue="Native Application.zip" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile Target.sensor_gateway_debug" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -194,7 +209,7 @@
       <workItem from="1702077355430" duration="406000" />
       <workItem from="1702078448972" duration="274000" />
       <workItem from="1702079167348" duration="3624000" />
-      <workItem from="1702157166804" duration="331000" />
+      <workItem from="1702157166804" duration="4515000" />
     </task>
     <servers />
   </component>
