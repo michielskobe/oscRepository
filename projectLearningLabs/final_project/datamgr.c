@@ -30,14 +30,13 @@ struct dplist_node {
 };
 
 dplist_t *sensor_list;
+sbuffer_t *buffer;
 
-/**
- *  This method holds the core functionality of your datamgr. It takes in 2 file pointers to the sensor files and parses them.
- *  When the method finishes all data should be in the internal pointer list and all log messages should be printed to stderr.
- *  \param fp_sensor_map file pointer to the map file
- *  \param fp_sensor_data file pointer to the binary data file
- */
-void datamgr_parse_sensor_files(FILE *fp_sensor_map, FILE *fp_sensor_data) {
+void *datamgr_parse_sensor_files(void *arg) {
+    data_param_t *data_param = arg;
+    buffer = data_param->buffer;
+    sensor_data_t *data = malloc(sizeof(sensor_data_t));
+    FILE *fp_sensor_map = fopen("room_sensor.map", "r");
     sensor_list = dpl_create(element_copy, element_free, element_compare);
     uint16_t sensor_id, room_id, data_sensor_id;
     double temperature;
@@ -54,12 +53,12 @@ void datamgr_parse_sensor_files(FILE *fp_sensor_map, FILE *fp_sensor_data) {
         dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),false);
     }
     //insert sensor data at corresponding sensor node
-    while(!feof(fp_sensor_data)) {
+    while(1) {
         // Read data of 1 sensor
-        fread(&data_sensor_id, sizeof(data_sensor_id), 1, fp_sensor_data);
-        fread(&temperature, sizeof(temperature), 1, fp_sensor_data);
-        fread(&timestamp, sizeof(timestamp), 1, fp_sensor_data);
-
+        sbuffer_remove(buffer, data);
+        data_sensor_id = data->id;
+        temperature = data->value;
+        timestamp = data->ts;
         dplist_node_t *sensor_node = datamgr_get_sensor_with_id(data_sensor_id);
         if (sensor_node != NULL) {
             my_element_t *sensor = sensor_node->element;
@@ -99,65 +98,6 @@ void datamgr_parse_sensor_files(FILE *fp_sensor_map, FILE *fp_sensor_data) {
  */
 void datamgr_free(){
     dpl_free(&sensor_list, true);
-}
-
-/**
- * Gets the room ID for a certain sensor ID
- * Use ERROR_HANDLER() if sensor_id is invalid
- * \param sensor_id the sensor id to look for
- * \return the corresponding room id
- */
-uint16_t datamgr_get_room_id(sensor_id_t sensor_id){
-    uint16_t room_id;
-    dplist_node_t *sensor_node = datamgr_get_sensor_with_id(sensor_id);
-    if (sensor_node != NULL) {
-        my_element_t *sensor_element = sensor_node->element;
-        room_id = sensor_element->room_id;
-    }
-    ERROR_HANDLER(sensor_node == NULL, "Invalid sensor_id");
-    return room_id;
-}
-
-/**
- * Gets the running AVG of a certain senor ID (if less then RUN_AVG_LENGTH measurements are recorded the avg is 0)
- * Use ERROR_HANDLER() if sensor_id is invalid
- * \param sensor_id the sensor id to look for
- * \return the running AVG of the given sensor
- */
-sensor_value_t datamgr_get_avg(sensor_id_t sensor_id){
-    double running_avg;
-    dplist_node_t *sensor_node = datamgr_get_sensor_with_id(sensor_id);
-    if (sensor_node != NULL) {
-        my_element_t *sensor_element = sensor_node->element;
-        running_avg = sensor_element->running_avg;
-    }
-    ERROR_HANDLER(sensor_node == NULL, "Invalid sensor_id");
-    return running_avg;
-}
-
-/**
- * Returns the time of the last reading for a certain sensor ID
- * Use ERROR_HANDLER() if sensor_id is invalid
- * \param sensor_id the sensor id to look for
- * \return the last modified timestamp for the given sensor
- */
-time_t datamgr_get_last_modified(sensor_id_t sensor_id){
-    time_t timestamp;
-    dplist_node_t *sensor_node = datamgr_get_sensor_with_id(sensor_id);
-    if (sensor_node != NULL) {
-        my_element_t *sensor_element = sensor_node->element;
-        timestamp = sensor_element->last_modified;
-    }
-    ERROR_HANDLER(sensor_node == NULL, "Invalid sensor_id");
-    return timestamp;
-}
-
-/**
- *  Return the total amount of unique sensor ID's recorded by the datamgr
- *  \return the total amount of sensors
- */
-int datamgr_get_total_sensors(){
-    return dpl_size(sensor_list);
 }
 
 dplist_node_t *datamgr_get_sensor_with_id(sensor_id_t id) {

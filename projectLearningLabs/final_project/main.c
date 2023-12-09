@@ -88,6 +88,9 @@ int main(int argc, char *argv[]) {
     connmgr_param->max_conn = atoi(argv[2]);
     connmgr_param->buffer = sbuffer;
 
+    data_param_t *datamgr_param = malloc(sizeof(data_param_t));
+    datamgr_param->buffer = sbuffer;
+
     pthread_create(&connmgr_thread, NULL, connection_manager, connmgr_param);
     pthread_create(&datamgr_thread, NULL, datamgr_parse_sensor_files, datamgr_param);
     //pthread_create(&stormgr_thread, NULL, NULL, NULL);

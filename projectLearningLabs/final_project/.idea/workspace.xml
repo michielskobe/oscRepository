@@ -24,7 +24,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="" />
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dplist.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dplist.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -188,7 +193,7 @@
       <workItem from="1702076248443" duration="302000" />
       <workItem from="1702077355430" duration="406000" />
       <workItem from="1702078448972" duration="274000" />
-      <workItem from="1702079167348" duration="776000" />
+      <workItem from="1702079167348" duration="2273000" />
     </task>
     <servers />
   </component>
