@@ -53,7 +53,7 @@ void *connection_routine(void *arg) {
         bytes = sizeof(data.ts);
         result = tcp_receive(client, (void *) &data.ts, &bytes);
         if (first_data_packet){
-            sprintf(write_msg, "%s %d %s", "Sensor node", data.id ,"has opened a new connection");
+            sprintf(write_msg, "Sensor node %d has opened a new connection", data.id);
             write(fd_write, write_msg, SIZE);
             first_data_packet = false;
         }
@@ -65,7 +65,7 @@ void *connection_routine(void *arg) {
     } while (result == TCP_NO_ERROR);
     if (result == TCP_CONNECTION_CLOSED) {
         printf("Peer has closed connection\n");
-        sprintf(write_msg, "%s %d %s", "Sensor node", data.id ,"has closed the connection");
+        sprintf(write_msg, "Sensor node %d has closed the connection", data.id);
         write(fd_write, write_msg, SIZE);
 
     }
