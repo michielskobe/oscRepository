@@ -5,8 +5,11 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
+#define SIZE 128
+
 #include <stdint.h>
 #include <time.h>
+#include "lib/dplist.h"
 
 typedef uint16_t sensor_id_t;
 typedef double sensor_value_t;
@@ -17,5 +20,21 @@ typedef struct {
     sensor_value_t value;
     sensor_ts_t ts;
 } sensor_data_t;
+
+/**
+ * basic node for the buffer, these nodes are linked together to create the buffer
+ */
+typedef struct sbuffer_node {
+    struct sbuffer_node *next;  /**< a pointer to the next node*/
+    sensor_data_t data;         /**< a structure containing the data */
+} sbuffer_node_t;
+
+/**
+ * a structure to keep track of the buffer
+ */
+struct sbuffer {
+    sbuffer_node_t *head;       /**< a pointer to the first node in the buffer */
+    sbuffer_node_t *tail;       /**< a pointer to the last node in the buffer */
+};
 
 #endif /* _CONFIG_H_ */

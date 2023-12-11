@@ -4,18 +4,17 @@
 
 #include "connmgr.h"
 
-#define SIZE 128
-int fd_write;
-char write_msg[SIZE];
-sbuffer_t *buffer;
+int conn_log_fd;
+char conn_log_msg[SIZE];
+sbuffer_t *conn_buffer;
 
 void *connection_manager(void *arg) {
     conn_param_t *conn_param = arg;
 
     int MAX_CONN = conn_param->max_conn;
     int PORT = conn_param->port;
-    buffer = conn_param->buffer;
-    fd_write = conn_param->write_end;
+    conn_buffer = conn_param->buffer;
+    conn_log_fd = conn_param->write_end;
 
     tcpsock_t *server, *client[MAX_CONN];
     int conn_counter = 0;
@@ -53,20 +52,20 @@ void *connection_routine(void *arg) {
         bytes = sizeof(data.ts);
         result = tcp_receive(client, (void *) &data.ts, &bytes);
         if (first_data_packet){
-            sprintf(write_msg, "Sensor node %d has opened a new connection", data.id);
-            write(fd_write, write_msg, SIZE);
+            sprintf(conn_log_msg, "Sensor node %d has opened a new connection", data.id);
+            write(conn_log_fd, conn_log_msg, SIZE);
             first_data_packet = false;
         }
         if ((result == TCP_NO_ERROR) && bytes) {
             printf("sensor id = %" PRIu16 " - temperature = %g - timestamp = %ld\n", data.id, data.value,
                    (long int) data.ts);
-            sbuffer_insert(buffer, &data);
+            sbuffer_insert(conn_buffer, &data);
         }
     } while (result == TCP_NO_ERROR);
     if (result == TCP_CONNECTION_CLOSED) {
         printf("Peer has closed connection\n");
-        sprintf(write_msg, "Sensor node %d has closed the connection", data.id);
-        write(fd_write, write_msg, SIZE);
+        sprintf(conn_log_msg, "Sensor node %d has closed the connection", data.id);
+        write(conn_log_fd, conn_log_msg, SIZE);
 
     }
     else
