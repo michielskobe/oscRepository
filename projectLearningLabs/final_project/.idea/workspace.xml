@@ -24,12 +24,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="">
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Updated log message of connection manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/config.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connmgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connmgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datamgr.h" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dplist.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dplist.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dplist.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dplist.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbuffer.c" beforeDir="false" afterPath="$PROJECT_DIR$/sbuffer.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/sbuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensor_data" beforeDir="false" afterPath="$PROJECT_DIR$/sensor_data" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +96,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "C/C++ File.file_creator.c.executor": "Run",
     "Makefile Target.sensor_gateway_debug.executor": "Run",
     "Native Application.all.executor": "Debug",
     "Native Application.file_creator.executor": "Run",
@@ -106,10 +114,16 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Native Application.all">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/sensor_gateway">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -165,6 +179,12 @@
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
+    <configuration name="file_creator.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="file_creator.c" CONFIG_NAME="file_creator.c">
+      <option name="sourceFile" value="file_creator.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="sensor_gateway_debug" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/Makefile" target="sensor_gateway_debug" workingDirectory="" arguments="">
         <envs />
@@ -172,6 +192,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="C/C++ File.file_creator.c" />
       <item itemvalue="Makefile Target.sensor_gateway_debug" />
       <item itemvalue="Native Application.all" />
       <item itemvalue="Native Application.clean-all" />
@@ -187,6 +208,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="C/C++ File.file_creator.c" />
         <item itemvalue="Makefile Target.sensor_gateway_debug" />
       </list>
     </recent_temporary>
@@ -209,11 +231,30 @@
       <workItem from="1702077355430" duration="406000" />
       <workItem from="1702078448972" duration="274000" />
       <workItem from="1702079167348" duration="3624000" />
-      <workItem from="1702157166804" duration="4515000" />
+      <workItem from="1702157166804" duration="6253000" />
+      <workItem from="1702209598465" duration="3385000" />
+      <workItem from="1702217074716" duration="2737000" />
+      <workItem from="1702226007432" duration="3264000" />
+      <workItem from="1702231306464" duration="3047000" />
+      <workItem from="1702234494058" duration="62000" />
+      <workItem from="1702295281739" duration="2975000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated log message of connection manager">
+      <option name="closed" value="true" />
+      <created>1702212380173</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702212380174</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated log message of connection manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated log message of connection manager" />
   </component>
 </project>

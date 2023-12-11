@@ -7,22 +7,6 @@
 #include "sbuffer.h"
 #include <pthread.h>
 
-/**
- * basic node for the buffer, these nodes are linked together to create the buffer
- */
-typedef struct sbuffer_node {
-    struct sbuffer_node *next;  /**< a pointer to the next node*/
-    sensor_data_t data;         /**< a structure containing the data */
-} sbuffer_node_t;
-
-/**
- * a structure to keep track of the buffer
- */
-struct sbuffer {
-    sbuffer_node_t *head;       /**< a pointer to the first node in the buffer */
-    sbuffer_node_t *tail;       /**< a pointer to the last node in the buffer */
-};
-
 pthread_mutex_t mutex;
 pthread_cond_t condvar;
 

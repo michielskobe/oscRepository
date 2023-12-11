@@ -7,12 +7,10 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <pthread.h>
 #include "config.h"
 #include "connmgr.h"
 #include "datamgr.h"
-#define SIZE 128
 #define READ_END 0
 #define WRITE_END 1
 
@@ -79,8 +77,12 @@ int main(int argc, char *argv[]) {
 
     int child_write_end = create_log_process();
 
-    pthread_t connmgr_thread;
-    //pthread_t datamgr_thread;
+    if (sbuffer_init(&sbuffer) == SBUFFER_FAILURE){
+        fprintf(stderr, "Error: Initialization of shared buffer failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    pthread_t connmgr_thread, datamgr_thread;
     //pthread_t stormgr_thread;
 
     conn_param_t *connmgr_param = malloc(sizeof(conn_param_t));
@@ -89,19 +91,33 @@ int main(int argc, char *argv[]) {
     connmgr_param->buffer = sbuffer;
     connmgr_param->write_end = child_write_end;
 
-    //data_param_t *datamgr_param = malloc(sizeof(data_param_t));
-    //datamgr_param->buffer = sbuffer;
+    data_param_t *datamgr_param = malloc(sizeof(data_param_t));
+    datamgr_param->buffer = sbuffer;
+    datamgr_param->write_end = child_write_end;
 
     pthread_create(&connmgr_thread, NULL, connection_manager, connmgr_param);
-    //pthread_create(&datamgr_thread, NULL, datamgr_parse_sensor_files, datamgr_param);
+    pthread_create(&datamgr_thread, NULL, data_manager, datamgr_param);
     //pthread_create(&stormgr_thread, NULL, NULL, NULL);
 
     pthread_join(connmgr_thread, NULL);
-    //pthread_join(datamgr_thread, NULL);
+    pthread_join(datamgr_thread, NULL);
     //pthread_join(stormgr_thread, NULL);
 
     char write_msg[SIZE];
     sprintf(write_msg, "%s", "Terminate process");
     write(fd[WRITE_END], write_msg, SIZE);
 }
+
+
+//TODO: fix build error: /usr/bin/ld: connmgr.o:(.bss+0x0): multiple definition of `element_copy'; main.o:(.bss+0x0): first defined here
+//TODO: fix build error: /usr/bin/ld: connmgr.o:(.bss+0x8): multiple definition of `element_free'; main.o:(.bss+0x8): first defined here
+//TODO: fix build error: /usr/bin/ld: connmgr.o:(.bss+0x10): multiple definition of `element_compare'; main.o:(.bss+0x10): first defined here
+//TODO: fix build error: /usr/bin/ld: datamgr.o:(.bss+0x0): multiple definition of `element_copy'; main.o:(.bss+0x0): first defined here
+//TODO: fix build error: /usr/bin/ld: datamgr.o:(.bss+0x8): multiple definition of `element_free'; main.o:(.bss+0x8): first defined here
+//TODO: fix build error: /usr/bin/ld: datamgr.o:(.bss+0x10): multiple definition of `element_compare'; main.o:(.bss+0x10): first defined here
+//TODO: fix build error: /usr/bin/ld: datamgr.o:(.bss+0x18): multiple definition of `fd_write'; connmgr.o:(.bss+0x18): first defined here
+//TODO: fix build error: /usr/bin/ld: datamgr.o:(.bss+0xa0): multiple definition of `buffer'; connmgr.o:(.bss+0xa0): first defined here
+//TODO: fix build error: /usr/bin/ld: sbuffer.o:(.bss+0x0): multiple definition of `element_copy'; main.o:(.bss+0x0): first defined here
+//TODO: fix build error: /usr/bin/ld: sbuffer.o:(.bss+0x8): multiple definition of `element_free'; main.o:(.bss+0x8): first defined here
+//TODO: fix build error: /usr/bin/ld: sbuffer.o:(.bss+0x10): multiple definition of `element_compare'; main.o:(.bss+0x10): first defined here
 

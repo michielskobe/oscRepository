@@ -1,5 +1,5 @@
 /**
- * \author {AUTHOR}
+ * \author Kobe Michiels
  */
 
 #ifndef _SBUFFER_H_
