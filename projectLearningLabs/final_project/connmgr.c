@@ -4,22 +4,21 @@
 
 #include "connmgr.h"
 
-int conn_log_fd;
-char conn_log_msg[SIZE];
-sbuffer_t *conn_buffer;
+int fd_connmgr;
+char log_msg_connmgr[SIZE];
+sbuffer_t *buffer_connmgr;
 
 void *connection_manager(void *arg) {
-    conn_param_t *conn_param = arg;
+    conn_thread_arg_t *conn_thread_arg = arg;
 
-    int MAX_CONN = conn_param->max_conn;
-    int PORT = conn_param->port;
-    conn_buffer = conn_param->buffer;
-    conn_log_fd = conn_param->write_end;
+    int MAX_CONN = conn_thread_arg->max_conn;
+    int PORT = conn_thread_arg->port;
+    buffer_connmgr = conn_thread_arg->buffer;
+    fd_connmgr = conn_thread_arg->fd;
 
     tcpsock_t *server, *client[MAX_CONN];
-    int conn_counter = 0;
-
     pthread_t tid[MAX_CONN];
+    int conn_counter = 0;
 
     printf("Test server is started\n");
     if (tcp_passive_open(&server, PORT) != TCP_NO_ERROR) exit(EXIT_FAILURE);
@@ -33,9 +32,12 @@ void *connection_manager(void *arg) {
         pthread_join(tid[i], NULL);
     if (tcp_close(&server) != TCP_NO_ERROR) exit(EXIT_FAILURE);
     printf("Test server is shutting down\n");
+
+    // insert end-of-stream marker
     sensor_data_t *end_of_stream_marker = malloc(sizeof(sensor_data_t*));
     end_of_stream_marker->id=0;
-    sbuffer_insert(conn_buffer, end_of_stream_marker);
+    sbuffer_insert(buffer_connmgr, end_of_stream_marker);
+    free(end_of_stream_marker);
     pthread_exit(0);
 }
 
@@ -58,28 +60,31 @@ void *connection_routine(void *arg) {
         result = tcp_receive(client, (void *) &data.ts, &bytes);
         if (result == TCP_TIMEOUT) break;
         if (first_data_packet){
-            sprintf(conn_log_msg, "Sensor node %" PRIu16 " has opened a new connection", data.id);
-            write(conn_log_fd, conn_log_msg, SIZE);
+            sprintf(log_msg_connmgr, "Sensor node %" PRIu16 " has opened a new connection", data.id);
+            write(fd_connmgr, log_msg_connmgr, SIZE);
             first_data_packet = false;
         }
         if ((result == TCP_NO_ERROR) && bytes) {
             printf("sensor id = %" PRIu16 " - temperature = %g - timestamp = %ld\n", data.id, data.value,
                    (long int) data.ts);
-            sbuffer_insert(conn_buffer, &data);
+            sbuffer_insert(buffer_connmgr, &data);
         }
     } while (result == TCP_NO_ERROR);
     if (result == TCP_TIMEOUT) {
         printf("Peer has closed connection (Connection time-out)\n");
-        sprintf(conn_log_msg, "Connection time-out: Sensor node %" PRIu16 " has closed the connection", data.id);
-        write(conn_log_fd, conn_log_msg, SIZE);
+        sprintf(log_msg_connmgr, "Connection time-out: Sensor node %" PRIu16 " has closed the connection", data.id);
+        write(fd_connmgr, log_msg_connmgr, SIZE);
     }
     else if (result == TCP_CONNECTION_CLOSED) {
         printf("Peer has closed connection\n");
-        sprintf(conn_log_msg, "Sensor node %" PRIu16 " has closed the connection", data.id);
-        write(conn_log_fd, conn_log_msg, SIZE);
+        sprintf(log_msg_connmgr, "Sensor node %" PRIu16 " has closed the connection", data.id);
+        write(fd_connmgr, log_msg_connmgr, SIZE);
     }
-    else
-        printf("Error occured on connection to peer\n");
+    else {
+        printf("Error occurred on connection to peer\n");
+        sprintf(log_msg_connmgr, "Error occurred on connection to sensor node %" PRIu16 "", data.id);
+        write(fd_connmgr, log_msg_connmgr, SIZE);
+    }
     tcp_close(&client);
     pthread_exit(0);
 }
