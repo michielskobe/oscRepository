@@ -25,7 +25,7 @@ void *storage_manager(void *arg) {
         sprintf(stor_log_msg, "Data insertion from sensor %" PRIu16 " succeeded", data->id);
         write(stor_log_fd, stor_log_msg, SIZE);
     }
-    sprintf(stor_log_msg, "The data.csv file has been closed.");
+    sprintf(stor_log_msg, "The data.csv file has been closed");
     write(stor_log_fd, stor_log_msg, SIZE);
     return 0;
 }
