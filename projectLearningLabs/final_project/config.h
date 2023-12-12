@@ -7,6 +7,18 @@
 
 #define SIZE 128
 
+#ifndef RUN_AVG_LENGTH
+#define RUN_AVG_LENGTH 5
+#endif
+
+#ifndef SET_MAX_TEMP
+#define SET_MAX_TEMP 20
+#endif
+
+#ifndef SET_MIN_TEMP
+#define SET_MIN_TEMP 5
+#endif
+
 #include <stdint.h>
 #include <time.h>
 
@@ -19,6 +31,5 @@ typedef struct sensor_data {
     sensor_value_t value;
     sensor_ts_t ts;
 } sensor_data_t;
-
 
 #endif /* _CONFIG_H_ */

@@ -23,15 +23,26 @@ struct sbuffer {
     sbuffer_node_t *tail;       /**< a pointer to the last node in the buffer */
 };
 
-pthread_mutex_t mutex;
-pthread_cond_t condvar;
+pthread_mutex_t store_mutex;
+pthread_mutex_t fetch_mutex;
+pthread_cond_t store_cond;
+pthread_cond_t fetch_cond;
+int condition = 0;
 
 int sbuffer_init(sbuffer_t **buffer) {
-    if (pthread_mutex_init(&mutex, NULL) != 0) {
+    if (pthread_mutex_init(&store_mutex, NULL) != 0) {
         fprintf(stderr, "Error: Initialization of mutex failed.\n");
         exit(EXIT_FAILURE);
     }
-    if (pthread_cond_init(&condvar, NULL) != 0) {
+    if (pthread_cond_init(&store_cond, NULL) != 0) {
+        fprintf(stderr, "Error: Initialization of condition variable failed.\n");
+        exit(EXIT_FAILURE);
+    }
+    if (pthread_mutex_init(&fetch_mutex, NULL) != 0) {
+        fprintf(stderr, "Error: Initialization of mutex failed.\n");
+        exit(EXIT_FAILURE);
+    }
+    if (pthread_cond_init(&fetch_cond, NULL) != 0) {
         fprintf(stderr, "Error: Initialization of condition variable failed.\n");
         exit(EXIT_FAILURE);
     }
@@ -54,11 +65,11 @@ int sbuffer_free(sbuffer_t **buffer) {
     }
     free(*buffer);
     *buffer = NULL;
-    if (pthread_mutex_destroy(&mutex) != 0) {
+    if (pthread_mutex_destroy(&store_mutex) != 0) {
         fprintf(stderr, "Error: Destruction of mutex failed.\n");
         exit(EXIT_FAILURE);
     }
-    if (pthread_cond_destroy(&condvar) != 0) {
+    if (pthread_cond_destroy(&store_cond) != 0) {
         fprintf(stderr, "Error: Destruction of condition variable failed.\n");
         exit(EXIT_FAILURE);
     }
@@ -66,18 +77,24 @@ int sbuffer_free(sbuffer_t **buffer) {
 }
 
 int sbuffer_remove(sbuffer_t *buffer, sensor_data_t *data) {
-    pthread_mutex_lock(&mutex);
     sbuffer_node_t *dummy;
     if (buffer == NULL) {
-        pthread_mutex_unlock(&mutex);
         return SBUFFER_FAILURE;
     }
+    pthread_mutex_lock(&fetch_mutex);
+    while(condition == 0){
+        pthread_cond_wait(&fetch_cond, &fetch_mutex);
+    }
+    condition = 0;
+    pthread_mutex_lock(&store_mutex);
     while (buffer->head == NULL) {
-        pthread_cond_wait(&condvar, &mutex);
+        pthread_cond_wait(&store_cond, &store_mutex);
     }
     *data = buffer->head->data;
     if (data->id == 0) {
-        pthread_mutex_unlock(&mutex);
+        pthread_cond_signal(&fetch_cond);
+        pthread_mutex_unlock(&fetch_mutex);
+        pthread_mutex_unlock(&store_mutex);
         return SBUFFER_NO_DATA;
     }
     dummy = buffer->head;
@@ -89,20 +106,22 @@ int sbuffer_remove(sbuffer_t *buffer, sensor_data_t *data) {
         buffer->head = buffer->head->next;
     }
     free(dummy);
-    pthread_mutex_unlock(&mutex);
+    pthread_cond_signal(&fetch_cond);
+    pthread_mutex_unlock(&fetch_mutex);
+    pthread_mutex_unlock(&store_mutex);
     return SBUFFER_SUCCESS;
 }
 
 int sbuffer_insert(sbuffer_t *buffer, sensor_data_t *data) {
-    pthread_mutex_lock(&mutex);
+    pthread_mutex_lock(&store_mutex);
     sbuffer_node_t *dummy;
     if (buffer == NULL) {
-        pthread_mutex_unlock(&mutex);
+        pthread_mutex_unlock(&store_mutex);
         return SBUFFER_FAILURE;
     }
     dummy = malloc(sizeof(sbuffer_node_t));
     if (dummy == NULL) {
-        pthread_mutex_unlock(&mutex);
+        pthread_mutex_unlock(&store_mutex);
         return SBUFFER_FAILURE;
     }
     dummy->data = *data;
@@ -116,29 +135,38 @@ int sbuffer_insert(sbuffer_t *buffer, sensor_data_t *data) {
         buffer->tail = buffer->tail->next;
     }
     if (data->id == 0){
-        pthread_cond_broadcast(&condvar);
-        pthread_mutex_unlock(&mutex);
+        pthread_cond_broadcast(&store_cond);
+        pthread_mutex_unlock(&store_mutex);
         return SBUFFER_NO_DATA;
     }
-    pthread_cond_signal(&condvar);
-    pthread_mutex_unlock(&mutex);
+    pthread_cond_signal(&store_cond);
+    pthread_mutex_unlock(&store_mutex);
     return SBUFFER_SUCCESS;
 }
 
 int sbuffer_read(sbuffer_t *buffer, sensor_data_t *data) {
-    pthread_mutex_lock(&mutex);
     if (buffer == NULL) {
-        pthread_mutex_unlock(&mutex);
         return SBUFFER_FAILURE;
     }
-    while (buffer->head == NULL) {
-        pthread_cond_wait(&condvar, &mutex);
+    pthread_mutex_lock(&fetch_mutex);
+    while(condition == 1){
+        pthread_cond_wait(&fetch_cond, &fetch_mutex);
     }
+    condition = 1;
+    pthread_mutex_lock(&store_mutex);
+    while (buffer->head == NULL) {
+        pthread_cond_wait(&store_cond, &store_mutex);
+    }
+
     *data = buffer->head->data;
     if (data->id == 0) {
-        pthread_mutex_unlock(&mutex);
+        pthread_cond_signal(&fetch_cond);
+        pthread_mutex_unlock(&fetch_mutex);
+        pthread_mutex_unlock(&store_mutex);
         return SBUFFER_NO_DATA;
     }
-    pthread_mutex_unlock(&mutex);
+    pthread_cond_signal(&fetch_cond);
+    pthread_mutex_unlock(&fetch_mutex);
+    pthread_mutex_unlock(&store_mutex);
     return SBUFFER_SUCCESS;
 }

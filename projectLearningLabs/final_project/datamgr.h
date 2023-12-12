@@ -16,20 +16,6 @@
 #include "lib/dplist.h"
 #include "sbuffer.h"
 
-#ifndef RUN_AVG_LENGTH
-#define RUN_AVG_LENGTH 5
-#endif
-
-#ifndef SET_MAX_TEMP
-#define SET_MAX_TEMP 10
-//#error SET_MAX_TEMP not set
-#endif
-
-#ifndef SET_MIN_TEMP
-#define SET_MIN_TEMP 5
-//#error SET_MIN_TEMP not set
-#endif
-
 typedef struct data_param {
     sbuffer_t *buffer;
     int write_end;
