@@ -5,21 +5,18 @@
 #ifndef DATAMGR_H_
 #define DATAMGR_H_
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <assert.h>
 #include <unistd.h>
-#include <pthread.h>
 #include <inttypes.h>
 
 #include "config.h"
 #include "lib/dplist.h"
 #include "sbuffer.h"
 
-typedef struct data_param {
+typedef struct data_thread_arg {
     sbuffer_t *buffer;
-    int write_end;
-} data_param_t;
+    int fd;
+} data_thread_arg_t;
 
 void *data_manager(void *arg);
 dplist_node_t *datamgr_get_sensor_with_id(sensor_id_t sensor_id);
