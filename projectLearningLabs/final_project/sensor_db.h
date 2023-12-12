@@ -17,8 +17,6 @@ typedef struct stor_thread_arg {
     int fd;
 } stor_thread_arg_t;
 
-
 void *storage_manager(void *arg);
-
 
 #endif /* _SENSOR_DB_H_ */
