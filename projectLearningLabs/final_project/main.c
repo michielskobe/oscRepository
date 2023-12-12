@@ -2,16 +2,15 @@
  * \author Kobe Michiels
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <pthread.h>
+
 #include "config.h"
 #include "connmgr.h"
 #include "datamgr.h"
 #include "sensor_db.h"
+
 #define READ_END 0
 #define WRITE_END 1
 
@@ -42,9 +41,8 @@ int end_log_process() {
 }
 
 int create_log_process() {
-    // create new gateway.log file
-    FILE *log_file = fopen("gateway.log", "w");
-    fclose(log_file);
+    // create new, empty gateway.log file
+    fclose(fopen("gateway.log", "w"));
     // create the pipe
     if (pipe(fd) == -1) {
         write_to_log_process("Error: Pipe failed");
@@ -65,7 +63,8 @@ int create_log_process() {
             if (strcmp(child_msg, "Terminate process") == 0) {
                 end_log_process();
                 exit(EXIT_SUCCESS);
-            } else {
+            }
+            else {
                 write_to_log_process(child_msg);
             }
         }
@@ -78,41 +77,46 @@ int main(int argc, char *argv[]) {
         printf("Please provide the right arguments: first the port, then the max nb of clients");
         return -1;
     }
+    // create log process
+    int pipe_fd = create_log_process();
 
-    int child_write_end = create_log_process();
+    // initialize buffer
+    sbuffer_init(&sbuffer);
 
-    if (sbuffer_init(&sbuffer) == SBUFFER_FAILURE){
-        fprintf(stderr, "Error: Initialization of shared buffer failed.\n");
-        exit(EXIT_FAILURE);
-    }
+    // create connection, data and storage manager threads
+    pthread_t connection_manager_thread, data_manager_thread, storage_manager_thread;
 
-    pthread_t connmgr_thread;
-    pthread_t datamgr_thread;
-    pthread_t stormgr_thread;
+    conn_thread_arg_t *conn_thread_arg = malloc(sizeof(conn_thread_arg_t*));
+    conn_thread_arg->port = atoi(argv[1]);
+    conn_thread_arg->max_conn = atoi(argv[2]);
+    conn_thread_arg->buffer = sbuffer;
+    conn_thread_arg->fd = pipe_fd;
 
-    conn_param_t *connmgr_param = malloc(sizeof(conn_param_t));
-    connmgr_param->port = atoi(argv[1]);
-    connmgr_param->max_conn = atoi(argv[2]);
-    connmgr_param->buffer = sbuffer;
-    connmgr_param->write_end = child_write_end;
+    data_thread_arg_t *data_thread_arg = malloc(sizeof(data_thread_arg_t*));
+    data_thread_arg->buffer = sbuffer;
+    data_thread_arg->fd = pipe_fd;
 
-    store_param_t *stormgr_param = malloc(sizeof(store_param_t));
-    stormgr_param->buffer = sbuffer;
-    stormgr_param->write_end = child_write_end;
+    stor_thread_arg_t *stor_thread_arg = malloc(sizeof(stor_thread_arg_t*));
+    stor_thread_arg->buffer = sbuffer;
+    stor_thread_arg->fd = pipe_fd;
 
-    data_param_t *datamgr_param = malloc(sizeof(data_param_t*));
-    datamgr_param->buffer = sbuffer;
-    datamgr_param->write_end = child_write_end;
+    pthread_create(&connection_manager_thread, NULL, connection_manager, conn_thread_arg);
+    pthread_create(&data_manager_thread, NULL, data_manager, data_thread_arg);
+    pthread_create(&storage_manager_thread, NULL, storage_manager, stor_thread_arg);
 
-    pthread_create(&connmgr_thread, NULL, connection_manager, connmgr_param);
-    pthread_create(&datamgr_thread, NULL, data_manager, datamgr_param);
-    pthread_create(&stormgr_thread, NULL, storage_manager, stormgr_param);
+    pthread_join(connection_manager_thread, NULL);
+    pthread_join(data_manager_thread, NULL);
+    pthread_join(storage_manager_thread, NULL);
 
-    pthread_join(connmgr_thread, NULL);
-    pthread_join(datamgr_thread, NULL);
-    pthread_join(stormgr_thread, NULL);
-
+    // end log process when threads are terminated
     char write_msg[SIZE];
     sprintf(write_msg, "%s", "Terminate process");
     write(fd[WRITE_END], write_msg, SIZE);
+
+    // free allocated memory resources
+    free(conn_thread_arg);
+    free(data_thread_arg);
+    free(stor_thread_arg);
+    sbuffer_free(&sbuffer);
+    return 0;
 }
