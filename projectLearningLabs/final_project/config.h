@@ -5,7 +5,10 @@
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
+#include <pthread.h>
 #include <time.h>
 
 #define SIZE 128
