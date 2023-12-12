@@ -19,7 +19,7 @@
 #define MAX_PENDING 10
 
 #ifndef TIMEOUT
-#define TIMEOUT 1
+#define TIMEOUT 5
 #endif
 
 typedef struct tcpsock tcpsock_t;
