@@ -24,9 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Updated data manager">
-      <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" />
-    </list>
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="workspace.xml updated as a result of other commits" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,7 +226,7 @@
       <workItem from="1702329994406" duration="337000" />
       <workItem from="1702330868424" duration="952000" />
       <workItem from="1702338201456" duration="2032000" />
-      <workItem from="1702369615929" duration="1245000" />
+      <workItem from="1702369615929" duration="2321000" />
     </task>
     <task id="LOCAL-00001" summary="Updated log message of connection manager">
       <option name="closed" value="true" />
@@ -254,7 +252,79 @@
       <option name="project" value="LOCAL" />
       <updated>1702298931120</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Primitive stand-alone data manager version">
+      <option name="closed" value="true" />
+      <created>1702371694361</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371694361</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Primitive stand-alone storage manager version">
+      <option name="closed" value="true" />
+      <created>1702371708612</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371708612</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Included storage manager functionality in main">
+      <option name="closed" value="true" />
+      <created>1702371812530</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371812530</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Restructured sbuffer.c">
+      <option name="closed" value="true" />
+      <created>1702371830500</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371830500</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Restructured dplist.c">
+      <option name="closed" value="true" />
+      <created>1702371853349</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371853349</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Redefined sensor data type in log message and thread exit">
+      <option name="closed" value="true" />
+      <created>1702371884918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371884918</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Restructured config.h">
+      <option name="closed" value="true" />
+      <created>1702371901968</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371901968</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added gateway.log and data.csv files">
+      <option name="closed" value="true" />
+      <created>1702371923475</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371923475</updated>
+    </task>
+    <task id="LOCAL-00012" summary="workspace.xml updated as a result of other commits">
+      <option name="closed" value="true" />
+      <created>1702371961538</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702371961538</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +333,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated log message of connection manager" />
     <MESSAGE value="Updated data manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated data manager" />
+    <MESSAGE value="Primitive stand-alone data manager version" />
+    <MESSAGE value="Primitive stand-alone storage manager version" />
+    <MESSAGE value="Included storage manager functionality in main" />
+    <MESSAGE value="Restructured sbuffer.c" />
+    <MESSAGE value="Restructured dplist.c" />
+    <MESSAGE value="Redefined sensor data type in log message and thread exit" />
+    <MESSAGE value="Restructured config.h" />
+    <MESSAGE value="Added gateway.log and data.csv files" />
+    <MESSAGE value="workspace.xml updated as a result of other commits" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml updated as a result of other commits" />
   </component>
 </project>
