@@ -14,8 +14,13 @@
 #define    TCP_SOCKOP_ERROR         3   // socket operator (socket, listen, bind, accept,...) error
 #define    TCP_CONNECTION_CLOSED    4   // send/receive indicate connection is closed
 #define    TCP_MEMORY_ERROR         5   // mem alloc error
+#define    TCP_TIMEOUT              6
 
 #define MAX_PENDING 10
+
+#ifndef TIMEOUT
+#define TIMEOUT 1
+#endif
 
 typedef struct tcpsock tcpsock_t;
 

@@ -48,12 +48,15 @@ void *connection_routine(void *arg) {
         // read sensor ID
         bytes = sizeof(data.id);
         result = tcp_receive(client, (void *) &data.id, &bytes);
+        if (result == TCP_SOCKOP_ERROR) break;
         // read temperature
         bytes = sizeof(data.value);
         result = tcp_receive(client, (void *) &data.value, &bytes);
+        if (result == TCP_SOCKOP_ERROR) break;
         // read timestamp
         bytes = sizeof(data.ts);
         result = tcp_receive(client, (void *) &data.ts, &bytes);
+        if (result == TCP_SOCKOP_ERROR) break;
         if (first_data_packet){
             sprintf(conn_log_msg, "Sensor node %" PRIu16 " has opened a new connection", data.id);
             write(conn_log_fd, conn_log_msg, SIZE);
@@ -65,7 +68,12 @@ void *connection_routine(void *arg) {
             sbuffer_insert(conn_buffer, &data);
         }
     } while (result == TCP_NO_ERROR);
-    if (result == TCP_CONNECTION_CLOSED) {
+    if (result == TCP_SOCKOP_ERROR) {
+        printf("Peer has closed connection (Connection time-out)\n");
+        sprintf(conn_log_msg, "Connection time-out: Sensor node %" PRIu16 " has closed the connection", data.id);
+        write(conn_log_fd, conn_log_msg, SIZE);
+    }
+    else if (result == TCP_CONNECTION_CLOSED) {
         printf("Peer has closed connection\n");
         sprintf(conn_log_msg, "Sensor node %" PRIu16 " has closed the connection", data.id);
         write(conn_log_fd, conn_log_msg, SIZE);

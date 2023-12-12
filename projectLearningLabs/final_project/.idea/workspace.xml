@@ -24,11 +24,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="workspace.xml updated as a result of other commits">
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Redefine SET_MIN_TEMP to 10">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connmgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/gateway.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tcpsock.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tcpsock.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tcpsock.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tcpsock.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test3.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test3.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,36 +89,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ File.file_creator.c.executor&quot;: &quot;Run&quot;,
-    &quot;Makefile Target.sensor_gateway_debug.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.all.executor&quot;: &quot;Debug&quot;,
-    &quot;Native Application.file_creator.executor&quot;: &quot;Run&quot;,
-    &quot;Native Application.sensor_gateway_debug.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kobe/osc/projectLearningLabs/final_project/Makefile&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.file_creator.c.executor": "Run",
+    "Makefile Target.sensor_gateway_debug.executor": "Run",
+    "Native Application.all.executor": "Debug",
+    "Native Application.file_creator.executor": "Run",
+    "Native Application.sensor_gateway_debug.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/kobe/osc/projectLearningLabs/final_project/Makefile",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Native Application.all">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="$PROJECT_DIR$/sensor_gateway">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -169,6 +167,11 @@
     <configuration name="zip" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="zip" CONFIG_NAME="zip" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="file_creator.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="final_project" TARGET_NAME="file_creator.c" CONFIG_NAME="file_creator.c">
@@ -241,7 +244,8 @@
       <workItem from="1702378353620" duration="2410000" />
       <workItem from="1702380846913" duration="1594000" />
       <workItem from="1702384550869" duration="14000" />
-      <workItem from="1702384598436" duration="3679000" />
+      <workItem from="1702384598436" duration="8811000" />
+      <workItem from="1702398857316" duration="4485000" />
     </task>
     <task id="LOCAL-00001" summary="Updated log message of connection manager">
       <option name="closed" value="true" />
@@ -347,7 +351,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702372029112</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fix typo in log message">
+      <option name="closed" value="true" />
+      <created>1702392370579</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1702392370579</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Redefine SET_MIN_TEMP to 10">
+      <option name="closed" value="true" />
+      <created>1702392428131</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1702392428131</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +385,8 @@
     <MESSAGE value="Restructured config.h" />
     <MESSAGE value="Added gateway.log and data.csv files" />
     <MESSAGE value="workspace.xml updated as a result of other commits" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml updated as a result of other commits" />
+    <MESSAGE value="Fix typo in log message" />
+    <MESSAGE value="Redefine SET_MIN_TEMP to 10" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redefine SET_MIN_TEMP to 10" />
   </component>
 </project>
