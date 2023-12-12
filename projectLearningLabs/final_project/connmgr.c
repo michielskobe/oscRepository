@@ -33,6 +33,9 @@ void *connection_manager(void *arg) {
         pthread_join(tid[i], NULL);
     if (tcp_close(&server) != TCP_NO_ERROR) exit(EXIT_FAILURE);
     printf("Test server is shutting down\n");
+    sensor_data_t *end_of_stream_marker = malloc(sizeof(sensor_data_t*));
+    end_of_stream_marker->id=0;
+    sbuffer_insert(conn_buffer, end_of_stream_marker);
     pthread_exit(0);
 }
 

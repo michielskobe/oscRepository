@@ -24,7 +24,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="workspace.xml updated as a result of other commits" />
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="workspace.xml updated as a result of other commits">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connmgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/connmgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datamgr.c" beforeDir="false" afterPath="$PROJECT_DIR$/datamgr.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbuffer.c" beforeDir="false" afterPath="$PROJECT_DIR$/sbuffer.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/sbuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensor_data" beforeDir="false" afterPath="$PROJECT_DIR$/sensor_data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensor_db.c" beforeDir="false" afterPath="$PROJECT_DIR$/sensor_db.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -226,7 +237,10 @@
       <workItem from="1702329994406" duration="337000" />
       <workItem from="1702330868424" duration="952000" />
       <workItem from="1702338201456" duration="2032000" />
-      <workItem from="1702369615929" duration="2321000" />
+      <workItem from="1702369615929" duration="2462000" />
+      <workItem from="1702375576301" duration="299000" />
+      <workItem from="1702378353620" duration="2410000" />
+      <workItem from="1702380846913" duration="462000" />
     </task>
     <task id="LOCAL-00001" summary="Updated log message of connection manager">
       <option name="closed" value="true" />
@@ -324,7 +338,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702371961538</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="workspace.xml updated as a result of other commits">
+      <option name="closed" value="true" />
+      <created>1702372029112</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702372029112</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

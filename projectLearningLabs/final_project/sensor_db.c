@@ -18,15 +18,14 @@ void *storage_manager(void *arg) {
     write(stor_log_fd, stor_log_msg, SIZE);
 
     sensor_data_t *data = malloc(sizeof(sensor_data_t*));
-    while(1){
-        sbuffer_remove(stor_buffer, data);
+    while(sbuffer_remove(stor_buffer, data) != SBUFFER_NO_DATA){
         FILE *data_file = fopen("data.csv", "a");
         fprintf(data_file, "%d,%f,%ld\n", data->id, data->value, data->ts);
+        fclose(data_file);
         sprintf(stor_log_msg, "Data insertion from sensor %" PRIu16 " succeeded", data->id);
         write(stor_log_fd, stor_log_msg, SIZE);
-        fclose(data_file);
     }
     sprintf(stor_log_msg, "The data.csv file has been closed.");
     write(stor_log_fd, stor_log_msg, SIZE);
-    pthread_exit(0);
+    return 0;
 }

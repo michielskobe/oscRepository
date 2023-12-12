@@ -67,24 +67,23 @@ void *data_manager(void *arg) {
     uint16_t sensor_id, room_id, data_sensor_id;
     double temperature;
     time_t timestamp;
-
+    //TODO: sensor malloc uit while halen en insert_copy op true zetten?
     FILE *fp_sensor_map = fopen("room_sensor.map", "r");
+    my_element_t *sensor = malloc(sizeof(my_element_t));
     //insert sensor and room id's into list
     while(!feof(fp_sensor_map)) {
         fscanf(fp_sensor_map, "%hd %hd\n", &room_id, &sensor_id);
-        my_element_t *sensor = malloc(sizeof(my_element_t));
         assert(sensor != NULL);
         sensor->sensor_id = sensor_id;
         sensor->room_id = room_id;
         sensor->temperature_count = 0;
-        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),false);
+        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),true);
     }
     fclose(fp_sensor_map);
     sensor_data_t *data = malloc(sizeof(sensor_data_t));
     //insert buffer data at corresponding sensor node
-    while(1) {
+    while(sbuffer_read(data_buffer, data) != SBUFFER_NO_DATA) {
         // Read data of 1 sensor
-        sbuffer_remove(data_buffer, data);
         data_sensor_id = data->id;
         temperature = data->value;
         timestamp = data->ts;
@@ -125,7 +124,7 @@ void *data_manager(void *arg) {
             write(data_log_fd, data_log_msg, SIZE);
         }
     }
-    pthread_exit(0);
+    return 0;
 }
 
 dplist_node_t *datamgr_get_sensor_with_id(sensor_id_t id) {

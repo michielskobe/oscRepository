@@ -78,7 +78,7 @@ int sbuffer_remove(sbuffer_t *buffer, sensor_data_t *data) {
     *data = buffer->head->data;
     if (data->id == 0) {
         pthread_mutex_unlock(&mutex);
-        return SBUFFER_SUCCESS;
+        return SBUFFER_NO_DATA;
     }
     dummy = buffer->head;
     if (buffer->head == buffer->tail) // buffer has only one node
@@ -118,9 +118,27 @@ int sbuffer_insert(sbuffer_t *buffer, sensor_data_t *data) {
     if (data->id == 0){
         pthread_cond_broadcast(&condvar);
         pthread_mutex_unlock(&mutex);
-        return SBUFFER_SUCCESS;
+        return SBUFFER_NO_DATA;
     }
     pthread_cond_signal(&condvar);
+    pthread_mutex_unlock(&mutex);
+    return SBUFFER_SUCCESS;
+}
+
+int sbuffer_read(sbuffer_t *buffer, sensor_data_t *data) {
+    pthread_mutex_lock(&mutex);
+    if (buffer == NULL) {
+        pthread_mutex_unlock(&mutex);
+        return SBUFFER_FAILURE;
+    }
+    while (buffer->head == NULL) {
+        pthread_cond_wait(&condvar, &mutex);
+    }
+    *data = buffer->head->data;
+    if (data->id == 0) {
+        pthread_mutex_unlock(&mutex);
+        return SBUFFER_NO_DATA;
+    }
     pthread_mutex_unlock(&mutex);
     return SBUFFER_SUCCESS;
 }

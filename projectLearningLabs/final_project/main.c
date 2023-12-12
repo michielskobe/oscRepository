@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
     }
 
     pthread_t connmgr_thread;
-    //pthread_t datamgr_thread;
+    pthread_t datamgr_thread;
     pthread_t stormgr_thread;
 
     conn_param_t *connmgr_param = malloc(sizeof(conn_param_t));
@@ -100,12 +100,16 @@ int main(int argc, char *argv[]) {
     stormgr_param->buffer = sbuffer;
     stormgr_param->write_end = child_write_end;
 
+    data_param_t *datamgr_param = malloc(sizeof(data_param_t*));
+    datamgr_param->buffer = sbuffer;
+    datamgr_param->write_end = child_write_end;
+
     pthread_create(&connmgr_thread, NULL, connection_manager, connmgr_param);
-    //pthread_create(&datamgr_thread, NULL, data_manager, datamgr_param);
+    pthread_create(&datamgr_thread, NULL, data_manager, datamgr_param);
     pthread_create(&stormgr_thread, NULL, storage_manager, stormgr_param);
 
     pthread_join(connmgr_thread, NULL);
-    //pthread_join(datamgr_thread, NULL);
+    pthread_join(datamgr_thread, NULL);
     pthread_join(stormgr_thread, NULL);
 
     char write_msg[SIZE];
