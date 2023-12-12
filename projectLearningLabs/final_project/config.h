@@ -1,9 +1,12 @@
 /**
- * \author {AUTHOR}
+ * \author Kobe Michiels
  */
 
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+
+#include <stdint.h>
+#include <time.h>
 
 #define SIZE 128
 
@@ -18,9 +21,6 @@
 #ifndef SET_MIN_TEMP
 #define SET_MIN_TEMP 10
 #endif
-
-#include <stdint.h>
-#include <time.h>
 
 typedef uint16_t sensor_id_t;
 typedef double sensor_value_t;
