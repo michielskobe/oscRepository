@@ -1,7 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+/**
+ * \author Kobe Michiels
+ */
+
 #include <inttypes.h>
-#include <pthread.h>
 #include <unistd.h>
 #include <stdbool.h>
 
