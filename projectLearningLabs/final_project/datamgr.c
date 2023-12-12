@@ -67,7 +67,6 @@ void *data_manager(void *arg) {
     uint16_t sensor_id, room_id, data_sensor_id;
     double temperature;
     time_t timestamp;
-    //TODO: sensor malloc uit while halen en insert_copy op true zetten?
     FILE *fp_sensor_map = fopen("room_sensor.map", "r");
     my_element_t *sensor = malloc(sizeof(my_element_t));
     //insert sensor and room id's into list
