@@ -2,10 +2,7 @@
  * \author Kobe Michiels
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "sbuffer.h"
-#include <pthread.h>
 
 /**
  * basic node for the buffer, these nodes are linked together to create the buffer
@@ -30,22 +27,12 @@ pthread_cond_t fetch_cond;
 int condition = 0;
 
 int sbuffer_init(sbuffer_t **buffer) {
-    if (pthread_mutex_init(&store_mutex, NULL) != 0) {
-        fprintf(stderr, "Error: Initialization of mutex failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_cond_init(&store_cond, NULL) != 0) {
-        fprintf(stderr, "Error: Initialization of condition variable failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_mutex_init(&fetch_mutex, NULL) != 0) {
-        fprintf(stderr, "Error: Initialization of mutex failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_cond_init(&fetch_cond, NULL) != 0) {
-        fprintf(stderr, "Error: Initialization of condition variable failed.\n");
-        exit(EXIT_FAILURE);
-    }
+    pthread_mutex_init(&store_mutex, NULL);
+    pthread_cond_init(&store_cond, NULL);
+
+    pthread_mutex_init(&fetch_mutex, NULL);
+    pthread_cond_init(&fetch_cond, NULL);
+
     *buffer = malloc(sizeof(sbuffer_t));
     if (*buffer == NULL) return SBUFFER_FAILURE;
     (*buffer)->head = NULL;
@@ -65,14 +52,10 @@ int sbuffer_free(sbuffer_t **buffer) {
     }
     free(*buffer);
     *buffer = NULL;
-    if (pthread_mutex_destroy(&store_mutex) != 0) {
-        fprintf(stderr, "Error: Destruction of mutex failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_cond_destroy(&store_cond) != 0) {
-        fprintf(stderr, "Error: Destruction of condition variable failed.\n");
-        exit(EXIT_FAILURE);
-    }
+    pthread_mutex_destroy(&store_mutex);
+    pthread_cond_destroy(&store_cond);
+    pthread_mutex_destroy(&fetch_mutex);
+    pthread_cond_destroy(&fetch_cond);
     return SBUFFER_SUCCESS;
 }
 
