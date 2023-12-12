@@ -128,7 +128,7 @@ void *data_manager(void *arg) {
     free(sensor);
     free(data);
     dpl_free(&sensor_list, true);
-    return 0;
+    pthread_exit(0);
 }
 
 dplist_node_t *get_sensor_with_id(sensor_id_t id) {
