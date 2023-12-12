@@ -3,7 +3,18 @@
  */
 
 #include "datamgr.h"
-#include "lib/dplist.c"
+
+struct dplist_node {
+    dplist_node_t *prev, *next;
+    void *element;
+};
+
+struct dplist {
+    dplist_node_t *head;
+    void *(*element_copy)(void *src_element);
+    void (*element_free)(void **element);
+    int (*element_compare)(void *x, void *y);
+};
 
 typedef struct{
     uint16_t sensor_id;
@@ -33,7 +44,6 @@ void * element_copy(void * element) {
 }
 
 void element_free(void ** element) {
-    //free((((my_element_t*)*element))->temperatures);
     free(*element);
     *element = NULL;
 }
@@ -49,9 +59,9 @@ sbuffer_t *data_buffer;
 dplist_t *sensor_list;
 
 void *data_manager(void *arg) {
-    data_param_t *conn_param = arg;
-    data_buffer = conn_param->buffer;
-    data_log_fd = conn_param->write_end;
+    data_param_t *data_param = arg;
+    data_buffer = data_param->buffer;
+    data_log_fd = data_param->write_end;
 
     sensor_list = dpl_create(element_copy, element_free, element_compare);
     uint16_t sensor_id, room_id, data_sensor_id;
@@ -70,10 +80,7 @@ void *data_manager(void *arg) {
         dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),false);
     }
     fclose(fp_sensor_map);
-
     sensor_data_t *data = malloc(sizeof(sensor_data_t));
-    //sbuffer_node_t *node = malloc(sizeof(sbuffer_node_t*));
-    //node = data_buffer->head;
     //insert buffer data at corresponding sensor node
     while(1) {
         // Read data of 1 sensor
@@ -104,21 +111,21 @@ void *data_manager(void *arg) {
             //printf("Sensor ID: %hd | Room ID: %hd | Running average: %.2f°C | Last modification: %ld\n", sensor->sensor_id, sensor->room_id, sensor->running_avg, sensor->last_modified);
             if (sensor->running_avg < SET_MIN_TEMP && sensor->temperature_count >= RUN_AVG_LENGTH) {
                 //fprintf( stderr, "Too cold in room %hd\n",sensor->room_id);
-                sprintf(data_log_msg, "Sensor node %d reports it’s too cold (avg temp = %f)", sensor->sensor_id, sensor->running_avg);
+                sprintf(data_log_msg, "Sensor node %" PRIu16 " reports it’s too cold (avg temp = %f)", sensor->sensor_id, sensor->running_avg);
                 write(data_log_fd, data_log_msg, SIZE);
             }
             else if (sensor->running_avg > SET_MAX_TEMP && sensor->temperature_count >= RUN_AVG_LENGTH) {
                 //fprintf(stderr, "Too hot in room %hd\n",sensor->room_id);
-                sprintf(data_log_msg, "Sensor node %d reports it’s too hot (avg temp = %f)", sensor->sensor_id, sensor->running_avg);
+                sprintf(data_log_msg, "Sensor node %" PRIu16 " reports it’s too hot (avg temp = %f)", sensor->sensor_id, sensor->running_avg);
                 write(data_log_fd, data_log_msg, SIZE);
             }
         } else {
             //fprintf( stderr, "Data from unknown sensor %hd is ignored.\n",data_sensor_id);
-            sprintf(data_log_msg, "Received sensor data with invalid sensor node ID %d", data_sensor_id);
+            sprintf(data_log_msg, "Received sensor data with invalid sensor node ID %" PRIu16 " ", data_sensor_id);
             write(data_log_fd, data_log_msg, SIZE);
         }
     }
-    return 0;
+    pthread_exit(0);
 }
 
 dplist_node_t *datamgr_get_sensor_with_id(sensor_id_t id) {

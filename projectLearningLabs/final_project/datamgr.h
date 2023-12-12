@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include <unistd.h>
+#include <pthread.h>
+#include <inttypes.h>
 
 #include "config.h"
 #include "lib/dplist.h"
@@ -19,12 +21,12 @@
 #endif
 
 #ifndef SET_MAX_TEMP
-#define SET_MAX_TEMP 20
+#define SET_MAX_TEMP 10
 //#error SET_MAX_TEMP not set
 #endif
 
 #ifndef SET_MIN_TEMP
-#define SET_MIN_TEMP 15
+#define SET_MIN_TEMP 5
 //#error SET_MIN_TEMP not set
 #endif
 
