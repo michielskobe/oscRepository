@@ -16,7 +16,7 @@
 #endif
 
 #ifndef SET_MIN_TEMP
-#define SET_MIN_TEMP 5
+#define SET_MIN_TEMP 10
 #endif
 
 #include <stdint.h>
