@@ -4,28 +4,33 @@
 
 #include "sensor_db.h"
 
-int stor_log_fd;
-char stor_log_msg[SIZE];
-sbuffer_t *stor_buffer;
+int fd_stormgr;
+char log_msg_stormgr[SIZE];
+sbuffer_t *buffer_stormgr;
 
 void *storage_manager(void *arg) {
-    store_param_t *stor_param = arg;
-    stor_buffer = stor_param->buffer;
-    stor_log_fd = stor_param->write_end;
+    stor_thread_arg_t *stor_thread_arg = arg;
+    buffer_stormgr = stor_thread_arg->buffer;
+    fd_stormgr = stor_thread_arg->fd;
+
     // create new data.csv file
     fclose(fopen("data.csv", "w"));
-    sprintf(stor_log_msg, "A new data.csv file has been created.");
-    write(stor_log_fd, stor_log_msg, SIZE);
+    // log data.csv file creation
+    sprintf(log_msg_stormgr, "A new data.csv file has been created.");
+    write(fd_stormgr, log_msg_stormgr, SIZE);
 
+    // insert buffer data in data.csv file
     sensor_data_t *data = malloc(sizeof(sensor_data_t*));
-    while(sbuffer_remove(stor_buffer, data) != SBUFFER_NO_DATA){
+    while(sbuffer_remove(buffer_stormgr, data) != SBUFFER_NO_DATA){
         FILE *data_file = fopen("data.csv", "a");
         fprintf(data_file, "%d,%f,%ld\n", data->id, data->value, data->ts);
         fclose(data_file);
-        sprintf(stor_log_msg, "Data insertion from sensor %" PRIu16 " succeeded", data->id);
-        write(stor_log_fd, stor_log_msg, SIZE);
+        sprintf(log_msg_stormgr, "Data insertion from sensor %" PRIu16 " succeeded", data->id);
+        write(fd_stormgr, log_msg_stormgr, SIZE);
     }
-    sprintf(stor_log_msg, "The data.csv file has been closed");
-    write(stor_log_fd, stor_log_msg, SIZE);
-    return 0;
+    // log data.csv file closure
+    sprintf(log_msg_stormgr, "The data.csv file has been closed");
+    write(fd_stormgr, log_msg_stormgr, SIZE);
+    free(data);
+    pthread_exit(0);
 }
