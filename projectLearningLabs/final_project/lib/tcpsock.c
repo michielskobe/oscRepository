@@ -215,8 +215,8 @@ int tcp_receive(tcpsock_t *socket, void *buffer, int *buf_size) {
     }
     *buf_size = recv(socket->sd, buffer, *buf_size, 0);
     TCP_DEBUG_PRINTF(*buf_size == 0, "Recv() : no connection to peer\n");
-    TCP_ERR_HANDLER(*buf_size == EAGAIN, return TCP_SOCKOP_ERROR);
-    TCP_ERR_HANDLER(*buf_size == EWOULDBLOCK, return TCP_SOCKOP_ERROR);
+    TCP_ERR_HANDLER((*buf_size < 0) && (errno == EAGAIN), return TCP_TIMEOUT);
+    TCP_ERR_HANDLER((*buf_size < 0) && (errno == EWOULDBLOCK), return TCP_TIMEOUT);
     TCP_ERR_HANDLER(*buf_size == 0, return TCP_CONNECTION_CLOSED);
     TCP_DEBUG_PRINTF((*buf_size < 0) && (errno == ENOTCONN), "Recv() : no connection to peer\n");
     TCP_ERR_HANDLER((*buf_size < 0) && (errno == ENOTCONN), return TCP_CONNECTION_CLOSED);

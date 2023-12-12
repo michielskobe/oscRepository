@@ -24,14 +24,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Redefine SET_MIN_TEMP to 10">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tcpsock.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tcpsock.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tcpsock.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tcpsock.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test3.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test3.sh" afterDir="false" />
-    </list>
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Redefine SET_MIN_TEMP to 10" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +233,7 @@
       <workItem from="1702384550869" duration="14000" />
       <workItem from="1702384598436" duration="8811000" />
       <workItem from="1702398857316" duration="4485000" />
-      <workItem from="1702404946935" duration="1810000" />
+      <workItem from="1702404946935" duration="1946000" />
     </task>
     <task id="LOCAL-00001" summary="Updated log message of connection manager">
       <option name="closed" value="true" />
