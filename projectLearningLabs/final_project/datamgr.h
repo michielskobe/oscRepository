@@ -19,7 +19,7 @@ typedef struct data_thread_arg {
 } data_thread_arg_t;
 
 void *data_manager(void *arg);
-dplist_node_t *datamgr_get_sensor_with_id(sensor_id_t sensor_id);
+dplist_node_t *get_sensor_with_id(sensor_id_t sensor_id);
 
 /*
  * Use ERROR_HANDLER() for handling memory allocation problems, invalid sensor IDs, non-existing files, etc.
