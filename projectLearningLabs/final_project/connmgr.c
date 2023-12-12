@@ -33,7 +33,7 @@ void *connection_manager(void *arg) {
         pthread_join(tid[i], NULL);
     if (tcp_close(&server) != TCP_NO_ERROR) exit(EXIT_FAILURE);
     printf("Test server is shutting down\n");
-    return 0;
+    pthread_exit(0);
 }
 
 void *connection_routine(void *arg) {
@@ -52,7 +52,7 @@ void *connection_routine(void *arg) {
         bytes = sizeof(data.ts);
         result = tcp_receive(client, (void *) &data.ts, &bytes);
         if (first_data_packet){
-            sprintf(conn_log_msg, "Sensor node %d has opened a new connection", data.id);
+            sprintf(conn_log_msg, "Sensor node %" PRIu16 " has opened a new connection", data.id);
             write(conn_log_fd, conn_log_msg, SIZE);
             first_data_packet = false;
         }
@@ -64,9 +64,8 @@ void *connection_routine(void *arg) {
     } while (result == TCP_NO_ERROR);
     if (result == TCP_CONNECTION_CLOSED) {
         printf("Peer has closed connection\n");
-        sprintf(conn_log_msg, "Sensor node %d has closed the connection", data.id);
+        sprintf(conn_log_msg, "Sensor node %" PRIu16 " has closed the connection", data.id);
         write(conn_log_fd, conn_log_msg, SIZE);
-
     }
     else
         printf("Error occured on connection to peer\n");
