@@ -10,12 +10,12 @@
 #include "sbuffer.h"
 #include "lib/tcpsock.h"
 
-typedef struct conn_param {
+typedef struct conn_thread_arg {
     int max_conn;
     int port;
     sbuffer_t *buffer;
-    int write_end;
-} conn_param_t;
+    int fd;
+} conn_thread_arg_t;
 
 void *connection_manager(void *arg);
 void *connection_routine(void *arg);
