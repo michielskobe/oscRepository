@@ -1,7 +1,6 @@
 /**
  * \author Kobe Michiels
  */
- //TODO: change csv creation log message
 
 #include <string.h>
 #include <time.h>
