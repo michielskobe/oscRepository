@@ -76,7 +76,7 @@ void *data_manager(void *arg) {
         sensor->sensor_id = sensor_id;
         sensor->room_id = room_id;
         sensor->temperature_count = 0;
-        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),true);
+        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),false);
     }
     fclose(fp_sensor_map);
 
@@ -127,7 +127,7 @@ void *data_manager(void *arg) {
     // free allocated memory resources
     free(sensor);
     free(data);
-    dpl_free(&sensor_list, true);
+    dpl_free(&sensor_list, false);
     pthread_exit(0);
 }
 

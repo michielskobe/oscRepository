@@ -1,6 +1,7 @@
 /**
  * \author Kobe Michiels
  */
+ //TODO: change csv creation log message
 
 #include <string.h>
 #include <time.h>
@@ -18,6 +19,7 @@ pid_t pid;
 int fd[2];
 int sequence_number = 0;
 sbuffer_t *sbuffer;
+char write_msg[SIZE];
 
 int write_to_log_process(char *msg) {
     // compose log message in format <sequence number> - <timestamp> - <log-event info message>
@@ -77,6 +79,8 @@ int main(int argc, char *argv[]) {
         printf("Please provide the right arguments: first the port, then the max nb of clients");
         return -1;
     }
+    int port = atoi(argv[1]);
+    int max_conn = atoi(argv[2]);
     // create log process
     int pipe_fd = create_log_process();
 
@@ -87,8 +91,8 @@ int main(int argc, char *argv[]) {
     pthread_t connection_manager_thread, data_manager_thread, storage_manager_thread;
 
     conn_thread_arg_t *conn_thread_arg = malloc(sizeof(conn_thread_arg_t));
-    conn_thread_arg->port = atoi(argv[1]);
-    conn_thread_arg->max_conn = atoi(argv[2]);
+    conn_thread_arg->port = port;
+    conn_thread_arg->max_conn = max_conn;
     conn_thread_arg->buffer = sbuffer;
     conn_thread_arg->fd = pipe_fd;
 
@@ -109,7 +113,6 @@ int main(int argc, char *argv[]) {
     pthread_join(storage_manager_thread, NULL);
 
     // end log process when threads are terminated
-    char write_msg[SIZE];
     sprintf(write_msg, "%s", "Terminate process");
     write(fd[WRITE_END], write_msg, SIZE);
 

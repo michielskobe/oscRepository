@@ -1,36 +1,60 @@
-0 - Wed Dec 13 12:13:44 2023 - A new data.csv file has been created..
-1 - Wed Dec 13 12:13:46 2023 - Sensor node 15 has opened a new connection.
-2 - Wed Dec 13 12:13:46 2023 - Data insertion from sensor 15 succeeded.
-3 - Wed Dec 13 12:13:47 2023 - Data insertion from sensor 15 succeeded.
-4 - Wed Dec 13 12:13:48 2023 - Data insertion from sensor 15 succeeded.
-5 - Wed Dec 13 12:13:48 2023 - Sensor node 21 has opened a new connection.
-6 - Wed Dec 13 12:13:48 2023 - Data insertion from sensor 21 succeeded.
-7 - Wed Dec 13 12:13:49 2023 - Data insertion from sensor 15 succeeded.
-8 - Wed Dec 13 12:13:50 2023 - Data insertion from sensor 15 succeeded.
-9 - Wed Dec 13 12:13:50 2023 - Sensor node 37 has opened a new connection.
-10 - Wed Dec 13 12:13:50 2023 - Data insertion from sensor 37 succeeded.
-11 - Wed Dec 13 12:13:51 2023 - Data insertion from sensor 15 succeeded.
-12 - Wed Dec 13 12:13:51 2023 - Data insertion from sensor 21 succeeded.
-13 - Wed Dec 13 12:13:52 2023 - Data insertion from sensor 15 succeeded.
-14 - Wed Dec 13 12:13:52 2023 - Data insertion from sensor 37 succeeded.
-15 - Wed Dec 13 12:13:53 2023 - Data insertion from sensor 15 succeeded.
-16 - Wed Dec 13 12:13:54 2023 - Data insertion from sensor 15 succeeded.
-17 - Wed Dec 13 12:13:54 2023 - Data insertion from sensor 37 succeeded.
-18 - Wed Dec 13 12:13:54 2023 - Data insertion from sensor 21 succeeded.
-19 - Wed Dec 13 12:13:55 2023 - Data insertion from sensor 15 succeeded.
-20 - Wed Dec 13 12:13:56 2023 - Data insertion from sensor 15 succeeded.
-21 - Wed Dec 13 12:13:56 2023 - Data insertion from sensor 37 succeeded.
-22 - Wed Dec 13 12:13:57 2023 - Data insertion from sensor 15 succeeded.
-23 - Wed Dec 13 12:13:57 2023 - Data insertion from sensor 21 succeeded.
-24 - Wed Dec 13 12:13:58 2023 - Data insertion from sensor 15 succeeded.
-25 - Wed Dec 13 12:13:58 2023 - Data insertion from sensor 37 succeeded.
-26 - Wed Dec 13 12:13:59 2023 - Data insertion from sensor 15 succeeded.
-27 - Wed Dec 13 12:14:00 2023 - Data insertion from sensor 15 succeeded.
-28 - Wed Dec 13 12:14:00 2023 - Data insertion from sensor 37 succeeded.
-29 - Wed Dec 13 12:14:00 2023 - Sensor node 21 reports it’s too hot (avg temp = 20.325248).
-30 - Wed Dec 13 12:14:00 2023 - Data insertion from sensor 21 succeeded.
-31 - Wed Dec 13 12:14:01 2023 - Data insertion from sensor 15 succeeded.
-32 - Wed Dec 13 12:14:01 2023 - Sensor node 15 has closed the connection.
-33 - Wed Dec 13 12:14:01 2023 - Sensor node 21 has closed the connection.
-34 - Wed Dec 13 12:14:01 2023 - Sensor node 37 has closed the connection.
-35 - Wed Dec 13 12:14:01 2023 - The data.csv file has been closed.
+0 - Wed Dec 13 14:05:59 2023 - A new data.csv file has been created..
+1 - Wed Dec 13 14:06:01 2023 - Sensor node 15 has opened a new connection.
+2 - Wed Dec 13 14:06:01 2023 - Data insertion from sensor 15 succeeded.
+3 - Wed Dec 13 14:06:01 2023 - Received sensor data with invalid sensor node ID 15 .
+4 - Wed Dec 13 14:06:02 2023 - Received sensor data with invalid sensor node ID 15 .
+5 - Wed Dec 13 14:06:02 2023 - Data insertion from sensor 15 succeeded.
+6 - Wed Dec 13 14:06:03 2023 - Received sensor data with invalid sensor node ID 15 .
+7 - Wed Dec 13 14:06:03 2023 - Sensor node 21 has opened a new connection.
+8 - Wed Dec 13 14:06:03 2023 - Received sensor data with invalid sensor node ID 21 .
+9 - Wed Dec 13 14:06:03 2023 - Data insertion from sensor 15 succeeded.
+10 - Wed Dec 13 14:06:03 2023 - Data insertion from sensor 21 succeeded.
+11 - Wed Dec 13 14:06:04 2023 - Received sensor data with invalid sensor node ID 15 .
+12 - Wed Dec 13 14:06:04 2023 - Data insertion from sensor 15 succeeded.
+13 - Wed Dec 13 14:06:05 2023 - Received sensor data with invalid sensor node ID 15 .
+14 - Wed Dec 13 14:06:05 2023 - Data insertion from sensor 15 succeeded.
+15 - Wed Dec 13 14:06:05 2023 - Sensor node 37 has opened a new connection.
+16 - Wed Dec 13 14:06:05 2023 - Data insertion from sensor 37 succeeded.
+17 - Wed Dec 13 14:06:05 2023 - Received sensor data with invalid sensor node ID 37 .
+18 - Wed Dec 13 14:06:06 2023 - Data insertion from sensor 21 succeeded.
+19 - Wed Dec 13 14:06:06 2023 - Received sensor data with invalid sensor node ID 21 .
+20 - Wed Dec 13 14:06:06 2023 - Received sensor data with invalid sensor node ID 15 .
+21 - Wed Dec 13 14:06:06 2023 - Data insertion from sensor 15 succeeded.
+22 - Wed Dec 13 14:06:07 2023 - Data insertion from sensor 37 succeeded.
+23 - Wed Dec 13 14:06:07 2023 - Received sensor data with invalid sensor node ID 37 .
+24 - Wed Dec 13 14:06:07 2023 - Received sensor data with invalid sensor node ID 15 .
+25 - Wed Dec 13 14:06:07 2023 - Data insertion from sensor 15 succeeded.
+26 - Wed Dec 13 14:06:08 2023 - Received sensor data with invalid sensor node ID 15 .
+27 - Wed Dec 13 14:06:08 2023 - Data insertion from sensor 15 succeeded.
+28 - Wed Dec 13 14:06:09 2023 - Received sensor data with invalid sensor node ID 21 .
+29 - Wed Dec 13 14:06:09 2023 - Data insertion from sensor 21 succeeded.
+30 - Wed Dec 13 14:06:09 2023 - Data insertion from sensor 37 succeeded.
+31 - Wed Dec 13 14:06:09 2023 - Received sensor data with invalid sensor node ID 37 .
+32 - Wed Dec 13 14:06:09 2023 - Data insertion from sensor 15 succeeded.
+33 - Wed Dec 13 14:06:09 2023 - Received sensor data with invalid sensor node ID 15 .
+34 - Wed Dec 13 14:06:10 2023 - Received sensor data with invalid sensor node ID 15 .
+35 - Wed Dec 13 14:06:10 2023 - Data insertion from sensor 15 succeeded.
+36 - Wed Dec 13 14:06:11 2023 - Received sensor data with invalid sensor node ID 37 .
+37 - Wed Dec 13 14:06:11 2023 - Data insertion from sensor 37 succeeded.
+38 - Wed Dec 13 14:06:11 2023 - Received sensor data with invalid sensor node ID 15 .
+39 - Wed Dec 13 14:06:11 2023 - Data insertion from sensor 15 succeeded.
+40 - Wed Dec 13 14:06:12 2023 - Received sensor data with invalid sensor node ID 21 .
+41 - Wed Dec 13 14:06:12 2023 - Data insertion from sensor 21 succeeded.
+42 - Wed Dec 13 14:06:12 2023 - Received sensor data with invalid sensor node ID 15 .
+43 - Wed Dec 13 14:06:12 2023 - Data insertion from sensor 15 succeeded.
+44 - Wed Dec 13 14:06:13 2023 - Received sensor data with invalid sensor node ID 37 .
+45 - Wed Dec 13 14:06:13 2023 - Data insertion from sensor 37 succeeded.
+46 - Wed Dec 13 14:06:13 2023 - Received sensor data with invalid sensor node ID 15 .
+47 - Wed Dec 13 14:06:13 2023 - Data insertion from sensor 15 succeeded.
+48 - Wed Dec 13 14:06:14 2023 - Received sensor data with invalid sensor node ID 15 .
+49 - Wed Dec 13 14:06:14 2023 - Data insertion from sensor 15 succeeded.
+50 - Wed Dec 13 14:06:15 2023 - Received sensor data with invalid sensor node ID 21 .
+51 - Wed Dec 13 14:06:15 2023 - Data insertion from sensor 21 succeeded.
+52 - Wed Dec 13 14:06:15 2023 - Received sensor data with invalid sensor node ID 37 .
+53 - Wed Dec 13 14:06:15 2023 - Data insertion from sensor 37 succeeded.
+54 - Wed Dec 13 14:06:15 2023 - Received sensor data with invalid sensor node ID 15 .
+55 - Wed Dec 13 14:06:15 2023 - Data insertion from sensor 15 succeeded.
+56 - Wed Dec 13 14:06:16 2023 - Sensor node 37 has closed the connection.
+57 - Wed Dec 13 14:06:16 2023 - Sensor node 21 has closed the connection.
+58 - Wed Dec 13 14:06:16 2023 - Sensor node 15 has closed the connection.
+59 - Wed Dec 13 14:06:16 2023 - The data.csv file has been closed.
