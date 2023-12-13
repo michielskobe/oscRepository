@@ -20,7 +20,7 @@ void *storage_manager(void *arg) {
     write(fd_stormgr, log_msg_stormgr, SIZE);
 
     // insert buffer data in data.csv file
-    sensor_data_t *data = malloc(sizeof(sensor_data_t*));
+    sensor_data_t *data = malloc(sizeof(sensor_data_t));
     while(sbuffer_remove(buffer_stormgr, data) != SBUFFER_NO_DATA){
         fprintf(data_file, "%d,%f,%ld\n", data->id, data->value, data->ts);
         fflush(data_file);
