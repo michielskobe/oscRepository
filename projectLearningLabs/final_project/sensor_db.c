@@ -16,7 +16,7 @@ void *storage_manager(void *arg) {
     // create new data.csv file
     FILE *data_file = fopen("data.csv", "w");
     // log data.csv file creation
-    sprintf(log_msg_stormgr, "A new data.csv file has been created.");
+    sprintf(log_msg_stormgr, "A new data.csv file has been created");
     write(fd_stormgr, log_msg_stormgr, SIZE);
 
     // insert buffer data in data.csv file
