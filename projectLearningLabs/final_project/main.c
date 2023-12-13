@@ -86,17 +86,17 @@ int main(int argc, char *argv[]) {
     // create connection, data and storage manager threads
     pthread_t connection_manager_thread, data_manager_thread, storage_manager_thread;
 
-    conn_thread_arg_t *conn_thread_arg = malloc(sizeof(conn_thread_arg_t*));
+    conn_thread_arg_t *conn_thread_arg = malloc(sizeof(conn_thread_arg_t));
     conn_thread_arg->port = atoi(argv[1]);
     conn_thread_arg->max_conn = atoi(argv[2]);
     conn_thread_arg->buffer = sbuffer;
     conn_thread_arg->fd = pipe_fd;
 
-    data_thread_arg_t *data_thread_arg = malloc(sizeof(data_thread_arg_t*));
+    data_thread_arg_t *data_thread_arg = malloc(sizeof(data_thread_arg_t));
     data_thread_arg->buffer = sbuffer;
     data_thread_arg->fd = pipe_fd;
 
-    stor_thread_arg_t *stor_thread_arg = malloc(sizeof(stor_thread_arg_t*));
+    stor_thread_arg_t *stor_thread_arg = malloc(sizeof(stor_thread_arg_t));
     stor_thread_arg->buffer = sbuffer;
     stor_thread_arg->fd = pipe_fd;
 
