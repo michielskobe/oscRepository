@@ -14,7 +14,7 @@ void *storage_manager(void *arg) {
     fd_stormgr = stor_thread_arg->fd;
 
     // create new data.csv file
-    fclose(fopen("data.csv", "w"));
+    FILE *data_file = fopen("data.csv", "w");
     // log data.csv file creation
     sprintf(log_msg_stormgr, "A new data.csv file has been created.");
     write(fd_stormgr, log_msg_stormgr, SIZE);
@@ -22,13 +22,13 @@ void *storage_manager(void *arg) {
     // insert buffer data in data.csv file
     sensor_data_t *data = malloc(sizeof(sensor_data_t*));
     while(sbuffer_remove(buffer_stormgr, data) != SBUFFER_NO_DATA){
-        FILE *data_file = fopen("data.csv", "a");
         fprintf(data_file, "%d,%f,%ld\n", data->id, data->value, data->ts);
-        fclose(data_file);
+        fflush(data_file);
         sprintf(log_msg_stormgr, "Data insertion from sensor %" PRIu16 " succeeded", data->id);
         write(fd_stormgr, log_msg_stormgr, SIZE);
     }
-    // log data.csv file closure
+    // close data.csv file
+    fclose(data_file);
     sprintf(log_msg_stormgr, "The data.csv file has been closed");
     write(fd_stormgr, log_msg_stormgr, SIZE);
     free(data);
