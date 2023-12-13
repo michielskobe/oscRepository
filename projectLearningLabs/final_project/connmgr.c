@@ -34,7 +34,7 @@ void *connection_manager(void *arg) {
     printf("Test server is shutting down\n");
 
     // insert end-of-stream marker
-    sensor_data_t *end_of_stream_marker = malloc(sizeof(sensor_data_t*));
+    sensor_data_t *end_of_stream_marker = malloc(sizeof(sensor_data_t));
     end_of_stream_marker->id=0;
     sbuffer_insert(buffer_connmgr, end_of_stream_marker);
     free(end_of_stream_marker);

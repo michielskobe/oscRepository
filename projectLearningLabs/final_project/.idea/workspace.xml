@@ -24,10 +24,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Added fflush() to storage manager">
+    <list default="true" id="9d533a5e-d3c4-4468-861a-885c3d6d5352" name="Changes" comment="Fixed Valgrind error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/gateway.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,7 +244,7 @@
       <workItem from="1702422502650" duration="3379000" />
       <workItem from="1702456824287" duration="3813000" />
       <workItem from="1702461971179" duration="548000" />
-      <workItem from="1702463805738" duration="1501000" />
+      <workItem from="1702463805738" duration="1952000" />
     </task>
     <task id="LOCAL-00001" summary="Updated log message of connection manager">
       <option name="closed" value="true" />
@@ -549,14 +550,21 @@
       <option name="project" value="LOCAL" />
       <updated>1702464178620</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Fixed Valgrind error">
+      <option name="closed" value="true" />
+      <created>1702465766111</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1702465766111</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Primitive stand-alone storage manager version" />
     <MESSAGE value="Included storage manager functionality in main" />
     <MESSAGE value="Restructured sbuffer.c" />
     <MESSAGE value="Restructured dplist.c" />
@@ -581,6 +589,7 @@
     <MESSAGE value="Added extra shell tests for time-out and memory leaks" />
     <MESSAGE value="Altered shell test for memory leaks" />
     <MESSAGE value="Added fflush() to storage manager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fflush() to storage manager" />
+    <MESSAGE value="Fixed Valgrind error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Valgrind error" />
   </component>
 </project>
