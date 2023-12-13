@@ -76,7 +76,7 @@ void *data_manager(void *arg) {
         sensor->sensor_id = sensor_id;
         sensor->room_id = room_id;
         sensor->temperature_count = 0;
-        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),false);
+        dpl_insert_at_index(sensor_list,sensor, dpl_size(sensor_list),true);
     }
     fclose(fp_sensor_map);
 
@@ -105,19 +105,19 @@ void *data_manager(void *arg) {
                     }
                     sensor_element->running_avg = (temperature_sum/RUN_AVG_LENGTH);
                     sensor_element->last_modified = timestamp;
+                    // internal decision-making based on running average and temperature bounds
+                    if (sensor_element->running_avg < SET_MIN_TEMP) {
+                        sprintf(log_msg_datamgr, "Sensor node %" PRIu16 " reports it’s too cold (avg temp = %f)", sensor_element->sensor_id, sensor_element->running_avg);
+                        write(fd_datamgr, log_msg_datamgr, SIZE);
+                    }
+                    else if (sensor_element->running_avg > SET_MAX_TEMP) {
+                        sprintf(log_msg_datamgr, "Sensor node %" PRIu16 " reports it’s too hot (avg temp = %f)", sensor_element->sensor_id, sensor_element->running_avg);
+                        write(fd_datamgr, log_msg_datamgr, SIZE);
+                    }
                 }
             }
             else {
                 ERROR_HANDLER((index >= RUN_AVG_LENGTH), "Index out of bounds");
-            }
-            // internal decision-making based on running average and temperature bounds
-            if (sensor_element->running_avg < SET_MIN_TEMP && sensor_element->temperature_count >= RUN_AVG_LENGTH) {
-                sprintf(log_msg_datamgr, "Sensor node %" PRIu16 " reports it’s too cold (avg temp = %f)", sensor_element->sensor_id, sensor_element->running_avg);
-                write(fd_datamgr, log_msg_datamgr, SIZE);
-            }
-            else if (sensor_element->running_avg > SET_MAX_TEMP && sensor_element->temperature_count >= RUN_AVG_LENGTH) {
-                sprintf(log_msg_datamgr, "Sensor node %" PRIu16 " reports it’s too hot (avg temp = %f)", sensor_element->sensor_id, sensor_element->running_avg);
-                write(fd_datamgr, log_msg_datamgr, SIZE);
             }
         } else {
             sprintf(log_msg_datamgr, "Received sensor data with invalid sensor node ID %" PRIu16 " ", buffer_data_id);
@@ -127,7 +127,7 @@ void *data_manager(void *arg) {
     // free allocated memory resources
     free(sensor);
     free(data);
-    dpl_free(&sensor_list, false);
+    dpl_free(&sensor_list, true);
     pthread_exit(0);
 }
 
