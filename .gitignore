@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 # Sensor monitoring system output files
-data.csv
-gateway.log
+*.csv
+*.log
