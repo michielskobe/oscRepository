@@ -1,4 +1,4 @@
-# Sensor Monitoring System [oscRepository]
+# Sensor Monitoring System [sensor-monitoring-system]
 
 ## Description
 
@@ -10,8 +10,8 @@ The basic C labs are meant to get familiar with C. At the end of these labs, the
 ## Clone the repository
 
 ```bash
-$ git clone git@github.com:michielskobe/oscRepository.git
-$ cd oscRepository
+$ git clone git@github.com:michielskobe/sensor-monitoring-system.git
+$ cd sensor-monitoring-system
 ```
 ## Start the Sensor Monitoring System
 
