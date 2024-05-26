@@ -52,5 +52,6 @@ Mkfile.old
 dkms.conf
 
 # Sensor monitoring system output files
-*.csv
-*.log
+projectLearningLabs/final_project/data.csv
+projectLearningLabs/final_project/gateway.log
+
