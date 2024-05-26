@@ -1,4 +1,5 @@
 make all
+./file_creator
 port=5678
 clients=5
 echo -e "starting gateway "
