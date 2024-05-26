@@ -50,8 +50,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-# Sensor monitoring system output files
-projectLearningLabs/final_project/data.csv
-projectLearningLabs/final_project/gateway.log
-
